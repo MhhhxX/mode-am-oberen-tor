@@ -1,0 +1,143 @@
+@font-face
+{
+    font-family: Juice;
+    src: url(font/juice_regular/JUICE_Regular-webfont.ttf);
+}
+
+@font-face
+{
+    font-family: Juice;
+    src: url(font/juice_bold/JUICE_Bold-webfont.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-R.ttf);
+    font-weight: normal;
+    }
+
+/*@font-face {
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-R.eot);
+    font-weight: normal;
+    }*/
+
+@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-M.ttf);
+    font-weight: 500;
+}
+
+@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-B.ttf);
+    font-weight: 700;
+}
+
+/*@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-B.eot);
+    font-weight: 700;
+}*/
+
+/*@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-L.eot);
+    font-weight: lighter;
+}*/
+
+@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-L.ttf);
+    font-weight: 300;
+}
+
+/*@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-LI.eot);
+    font-style: italic;
+}*/
+
+@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-MI.ttf);
+    font-weight: 500;
+    font-style: italic;
+}
+
+/*@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-MI.eot);
+    font-weight: bold;
+    font-style: italic;
+}*/
+
+@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-BI.ttf);
+    font-weight: 700;
+    font-style: italic;
+}
+
+/*@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-BI.eot);
+    font-weight: bolder;
+    font-style: italic;
+}*/
+
+@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-LI.ttf);
+    font-weight: 300;
+    font-style: italic;
+}
+
+/*@font-face
+{
+    font-family: Ubuntu;
+    src: url(font/ubuntu-font-family-0.80/Ubuntu-LI.eot);
+    font-weight: lighter;
+    font-style: italic;
+}*/
+
+@font-face{
+    font-family: Noto;
+    src: url(font/NotoSans-hinted/NotoSans-Regular.ttf);
+    font-weight: normal;
+}
+
+@font-face
+{
+    font-family: Noto;
+    src: url(font/NotoSans-hinted/NotoSans-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face
+{
+    font-family: Noto;
+    src: url(font/NotoSans-hinted/NotoSans-BoldItalic.ttf);
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face
+{
+    font-family: Noto;
+    src: url(font/NotoSans-hinted/NotoSans-Italic.ttf);
+    font-weight: normal;
+    font-style: italic;
+}
