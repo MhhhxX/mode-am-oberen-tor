@@ -376,9 +376,9 @@ img {
     line-height: 20px;
 }
 
-#bottomnavL li:hover, #bottomnavR li:hover
+#bottomnavL li .nav-link:hover, #bottomnavR li .nav-link:hover
 {
-    border-bottom: 4px solid #DD3700 !important;
+    border-bottom: 4px solid #DD3700;
 }
 
 li {
@@ -389,6 +389,12 @@ li {
     width: 30%;
     text-align: center
     }
+
+.bottomheader .nav-pills .nav-link.active {
+	background-color: inherit;
+	color: black;
+	border-bottom: 4px solid #DD3700;
+}
 
 #navL img, #navR img
 {

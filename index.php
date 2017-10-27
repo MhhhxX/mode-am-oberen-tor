@@ -16,11 +16,12 @@
 		<link href="ExtSrc/lightbox/src/css/lightbox.css" rel="stylesheet">
 		<link rel="shortcut icon" href="img/logos/Mode_am_oberen_Tor_Logo_quadratisch.ico" />
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+        <script src="https://code.jquery.com/jquery-latest.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-        <script src="https://code.jquery.com/jquery-latest.js"></script>
+        <!--<script src="https://code.jquery.com/jquery-latest.js"></script>-->
 		<script src="js/jquery.mobile.custom.min.js"></script>
 		<script src="js/jquery.scrollTo.min.js"></script>
 		<script src="js/jquery.localScroll.min.js"></script>
@@ -28,6 +29,7 @@
 		<script src="ExtSrc/jquery.reject.min.js"></script>
 		<script src="ExtSrc/pace-1.0.2/pace.min.js"></script>
 		<script src="ExtSrc/jInvertScroll/dist/js/jquery.jInvertScroll.min.js"></script>
+		<script src="js/handle.scrollspy.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="ExtSrc/pace-1.0.2/themes/red/pace-theme-center-circle.css">
 		<link rel="stylesheet" type="text/css" href="ExtSrc/jInvertScroll/dist/css/jInvertScroll.css">
@@ -160,8 +162,6 @@
 
 					for (var i = 0; i < Posts.length; i++)
 					{
-						/*if (($(leftPictures[i]).innerWidth() / $(leftPictures[i]).innerHeight()) < 1)
-							$(Posts[i]).find("#post-picture").css("height", $(leftPictures[i]).innerHeight());*/
 
 						$(Posts[i]).find(".post-picture-right").find("li").each(function(j){
 							if (($(leftPictures[i]).innerWidth() / $(leftPictures[i]).innerHeight()) < 1)
@@ -195,17 +195,6 @@
 					var newsBlocks = $(".news").find("figure").find(".newsblock").toArray();
 					var counter = 0, erg = 0;
 					triggerPos1 = $(".about").offset().top - $(".bottomheader").height();
-					/*newsBlocks.each(function(i)
-					{
-						$(this).css("margin-left", Math.floor((Math.random() * (browserWidth - $(Posts[0]).children().width())) + 1));
-					});*/
-
-					/*while((erg = 2 * counter) < newsBlocks.length)
-					{
-						$(newsBlocks[erg]).css("margin-left", "3%");
-						$(newsBlocks[erg + 1]).css("margin-left", "45%");
-						counter++;
-					}*/
 				}
 
 					$('button').click(function()
@@ -227,55 +216,7 @@
 					var isIE10 = !!navigator.userAgent.match(/MSIE 10/);
 					var isIE11 = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
 
-					var sections = $("main").find("section").toArray();
-					var sectionsyPos = [];
-					var captions = [];
-					var menueLinks = $(".bottomheader").find("a").toArray();
-
-
 					var distance = $(".bottomheader").height();
-
-					for (var i = 0; i < sections.length; i++)
-					{
-						sectionsyPos[i] = $(sections[i]).offset().top;
-					}
-
-					$(window).on('scroll', function()
-					{
-						for (var i=0; i<sections.length; i++)
-							if ($(window).scrollTop() + distance >= sectionsyPos[i] && $(window).scrollTop() <= sectionsyPos[i] + $(sections[i]).innerHeight() - distance)
-							{
-								for (var j = 0; j < menueLinks.length; j++)
-								{
-									/*if (sectionsyPos[i+1] <= sectionsyPos[i] + $(sections[i]).height() - 50)
-										{*/
-									for (var k = 0; k < sections.length; k++)
-									{
-										sectionsyPos[k] = $(sections[k]).offset().top;
-									}
-										//}
-									if($(sections[i]).find("h1").attr("id") === $(menueLinks[j]).attr("href").replace("#", ""))
-									{
-										$(menueLinks[j]).parent().css("border-bottom", "4px solid #DD3700"); // that's the effect in the menue bar
-										// window.location.hash = $(menueLinks[j]).attr("href");
-									}
-								};
-							}
-							else
-							{
-								for (var j = 0; j < menueLinks.length; j++)
-								{
-									if($(sections[i]).find("h1").attr("id") === $(menueLinks[j]).attr("href").replace("#", ""))
-									{
-										if ($(document).outerWidth(true) <= 605)
-											$(menueLinks[j]).parent().css("border-bottom", "1px solid white"); // that's the effect in the menue bar
-										else
-											$(menueLinks[j]).parent().css("border-bottom", "none");
-									}
-								};
-							}
-
-					});
 
 					if (isIE10 || isIE11)
 					{
@@ -361,7 +302,7 @@
 		
 	</head>
 	
-	<body id="home" data-spy="scroll" data-target="#top-navbar" data-offset="0" style="position: relative;">
+	<body id="home" data-spy="scroll" data-target="#top-navbar" data-offset="50" style="position: relative;">
 	
 	<div class="wrapper">
 		<header class="">
@@ -444,7 +385,7 @@
 				
 				<div id="top-navbar" class="bottomheader">
 					
-						<ul class="nav" id="bottomnavL">
+						<ul class="nav nav-pills" id="bottomnavL">
 							<li class="nav-item">
 								<a class="nav-link" href="#jeansmode" title="">
 									Hosen
@@ -466,18 +407,20 @@
 							</li>
 						</ul>
 
-						<table class="nav-brand bottomlogo">
-							<tbody>
-								<tr>
-            						<th> mode </th>
-            						<th> am <br>
-              							oberen </th>
-            						<th> tor </th>
-  								</tr>
-							</tbody>
-						</table>
+						<a class="nav-brand" href="#home">
+							<table class="nav-brand bottomlogo">
+								<tbody>
+									<tr>
+	            						<th> mode </th>
+	            						<th> am <br>
+	              							oberen </th>
+	            						<th> tor </th>
+	  								</tr>
+								</tbody>
+							</table>
+						</a>
 						
-						<ul class="nav" id="bottomnavR">
+						<ul class="nav nav-pills" id="bottomnavR">
 						
 							<li class="nav-item">
 								<a class="nav-link" href="#news" title="">
