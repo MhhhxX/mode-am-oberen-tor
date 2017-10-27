@@ -233,11 +233,12 @@ header {
     float: left;
     margin-top: 0.5%;
     font-family: arial;
+    text-align: center;
 }
 
 #mainlogo th, #mainlogo1 th
 {
-    font-size: 21px;
+    font-size: 1.2em;
     font-weight: 900;
     width: 25%;
     border-bottom: 2px solid black;
@@ -372,7 +373,7 @@ img {
 {
     /*border: 1px dotted white;*/
     width: 33%;
-    line-height: 30px;
+    line-height: 20px;
 }
 
 #bottomnavL li:hover, #bottomnavR li:hover
@@ -412,6 +413,7 @@ li {
     border-right: 2px solid black;
     margin: 0px;
     background: white;
+    text-align: center;
 }
 
 .bottomlogo tbody th:first-child {
@@ -1343,12 +1345,12 @@ ul.topnav li a {
 {
     #mainlogo th 
     {
-    font-size: 1.0em;
+    font-size: 0.9em;
     }
     
     #mainlogo tr:last-child td
     {
-        font-size: 11px;
+        font-size: 8px;
     }
     
     .about #contact
@@ -1414,6 +1416,11 @@ ul.topnav li a {
     {
         transform: rotatey(-90deg) rotatez(90deg) translatex(22px) translatez(51px);
         width: 10%;
+    }
+    
+    #mainlogo th
+    {
+        font-size: 1em;
     }
 }
 
@@ -1493,7 +1500,7 @@ ul.topnav li a {
 {
     #mainlogo th 
     {
-    font-size: 1.2em;
+    font-size: 0.9em;
     }
     
     #mainlogo tr:last-child td

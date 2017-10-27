@@ -16,6 +16,11 @@
 		<link href="ExtSrc/lightbox/src/css/lightbox.css" rel="stylesheet">
 		<link rel="shortcut icon" href="img/logos/Mode_am_oberen_Tor_Logo_quadratisch.ico" />
 
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-latest.js"></script>
 		<script src="js/jquery.mobile.custom.min.js"></script>
 		<script src="js/jquery.scrollTo.min.js"></script>
 		<script src="js/jquery.localScroll.min.js"></script>
@@ -49,9 +54,9 @@
 			$(document).ready(function() {
 				$.reject(
 				{
-					reject: {  
-            		msie: 7, 
-        			}  
+					reject: {
+            		msie: 7,
+        			}
     			});
 
     			$(window).bind('beforeunload',function(){
@@ -62,7 +67,7 @@
 					});
 
 				});
-    				
+
 			});
 
 			$(window).unload(function()
@@ -70,7 +75,7 @@
 				$.ajax(
 				{
 					  url: 'restoreNewsFeed.php',
-					  success: function(data) 
+					  success: function(data)
 					  {
 					  }
 				});
@@ -95,7 +100,7 @@
 
 		<script type="text/javascript">
 			$(window).load(function()
-			{ 
+			{
 				/*$(".bottomheader").load(function() $("section h1").height()/3
 				{*/
 					var abstand = $("section h1").height() - $(".bottomheader").height() - $(".bottomheader").height()/2;
@@ -106,7 +111,7 @@
 				jQuery(function( $ )
 					{
 						$.localScroll.defaults.axis = 'y';
-						
+
 						/**
 						 * NOTE: I use $.localScroll instead of $('#navigation').localScroll() so I
 						 * also affect the >> and << links. I want every link in the page to scroll.
@@ -129,7 +134,7 @@
 					});
 			});
 		</script>
-		
+
 		<script type="text/javascript">
 		$(window).load(function()
 		{
@@ -159,32 +164,32 @@
 							$(Posts[i]).find("#post-picture").css("height", $(leftPictures[i]).innerHeight());*/
 
 						$(Posts[i]).find(".post-picture-right").find("li").each(function(j){
-							if (($(leftPictures[i]).innerWidth() / $(leftPictures[i]).innerHeight()) < 1) 
+							if (($(leftPictures[i]).innerWidth() / $(leftPictures[i]).innerHeight()) < 1)
 							{
 								$(this).css("height", ($(leftPictures[i]).innerHeight()) / $(this).parent().find("li").toArray().length);
 								if ($(this).parent().find("li").toArray().length > 3)
 
 									$(this).css("height", $(leftPictures[i]).innerHeight() / 3);
 							}
-								
+
 							else
 							{
 								$(this).css("height", $(leftPictures[i]).innerHeight() / 2);
 							}
-				
+
 						});
 					}
 
-					
 
-					for(var i = 0; i < rightPictures.length; i++) 
+
+					for(var i = 0; i < rightPictures.length; i++)
 					{
-						if (($(rightPictures[i]).innerWidth() / $(rightPictures[i]).innerHeight()) >= 1) 
+						if (($(rightPictures[i]).innerWidth() / $(rightPictures[i]).innerHeight()) >= 1)
 						{
 							$(rightPictures[i]).css("top", "0px");
 							$(rightPictures[i]).css("height", "100%");
 						}
-						
+
 					}
 
 					var newsBlocks = $(".news").find("figure").find(".newsblock").toArray();
@@ -208,7 +213,7 @@
     					$.get("furtherNews.php", function(data, status){
 				            //alert("Data: " + data + "\nStatus: " + status);
 				            $(".news .allNews").append(data);
-				            
+
 				            setTimeout(function()
 				            	{
 				            		update();
@@ -218,7 +223,7 @@
     				});
 
 					var triggerPos = $(".jeansmode").offset().top - 60;		// gibt an ab welchem y-Wert die Animation gestartet werden soll (in Pixel)
-					
+
 					var isIE10 = !!navigator.userAgent.match(/MSIE 10/);
 					var isIE11 = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
 
@@ -230,7 +235,7 @@
 
 					var distance = $(".bottomheader").height();
 
-					for (var i = 0; i < sections.length; i++) 
+					for (var i = 0; i < sections.length; i++)
 					{
 						sectionsyPos[i] = $(sections[i]).offset().top;
 					}
@@ -238,13 +243,13 @@
 					$(window).on('scroll', function()
 					{
 						for (var i=0; i<sections.length; i++)
-							if ($(window).scrollTop() + distance >= sectionsyPos[i] && $(window).scrollTop() <= sectionsyPos[i] + $(sections[i]).innerHeight() - distance) 
+							if ($(window).scrollTop() + distance >= sectionsyPos[i] && $(window).scrollTop() <= sectionsyPos[i] + $(sections[i]).innerHeight() - distance)
 							{
-								for (var j = 0; j < menueLinks.length; j++) 
+								for (var j = 0; j < menueLinks.length; j++)
 								{
-									/*if (sectionsyPos[i+1] <= sectionsyPos[i] + $(sections[i]).height() - 50) 
+									/*if (sectionsyPos[i+1] <= sectionsyPos[i] + $(sections[i]).height() - 50)
 										{*/
-									for (var k = 0; k < sections.length; k++) 
+									for (var k = 0; k < sections.length; k++)
 									{
 										sectionsyPos[k] = $(sections[k]).offset().top;
 									}
@@ -258,7 +263,7 @@
 							}
 							else
 							{
-								for (var j = 0; j < menueLinks.length; j++) 
+								for (var j = 0; j < menueLinks.length; j++)
 								{
 									if($(sections[i]).find("h1").attr("id") === $(menueLinks[j]).attr("href").replace("#", ""))
 									{
@@ -272,22 +277,22 @@
 
 					});
 
-					if (isIE10 || isIE11) 
+					if (isIE10 || isIE11)
 					{
-						
-						$(window).on('scroll', function () 
+
+						$(window).on('scroll', function ()
 						{
-							if ($(window).scrollTop() > triggerPos) 
+							if ($(window).scrollTop() > triggerPos)
 							{
 								$(".frontheader").addClass("smaller-header");
 								$(".bottomheader").addClass("bottomheader-rotate");
 								$(".frontheaderMobile").addClass("smaller-header");
 								$("footer").css("display", "block");
-								
+
 							}
-							if ($(window).scrollTop() < triggerPos) 
+							if ($(window).scrollTop() < triggerPos)
 							{
-								
+
 								$(".bottomheader").removeClass("bottomheader-rotate");
 								$("footer").css("display", "none");
 								$(".frontheader").removeClass("smaller-header");
@@ -296,23 +301,23 @@
 						});
 					}
 					else
-					{	
-					
-						$(window).scroll(function () 
+					{
+
+						$(window).scroll(function ()
 						{
-							if ($(window).scrollTop() > triggerPos) 
+							if ($(window).scrollTop() > triggerPos)
 							{
 								$(".header").addClass("smaller-header");
 								$("footer").css("display", "block");
-								
+
 							}
-							if ($(window).scrollTop() < triggerPos) 
+							if ($(window).scrollTop() < triggerPos)
 							{
 								$("footer").css("display", "none");
 								$(".header").removeClass("smaller-header");
 							}
 
-							if ($(window).scrollTop() > triggerPos1) 
+							if ($(window).scrollTop() > triggerPos1)
 							{
 
 								$(".header").addClass("side-header");
@@ -352,18 +357,18 @@
 					$(".topnav").removeClass("responsive");
 				});
 			});
-		</script>		
+		</script>
 		
 	</head>
 	
-	<body id="home">
+	<body id="home" data-spy="scroll" data-target="#top-navbar" data-offset="0" style="position: relative;">
 	
 	<div class="wrapper">
 		<header class="">
 			<div class="header">
-			<div class="frontheader">	
+			<div class="frontheader">
 			
-				<ul id="navL">
+				<ul class="nav" id="navL">
 
 						<li>
 							<a href="#jeansmode" title="Modeangebot an Jeans und Hosen">
@@ -409,7 +414,7 @@
         				</tbody>
       			</table>		
 				
-				<ul id="navR">
+				<ul class="nav" id="navR">
 					<li>
 						<a href="#news" title="Neuigkeiten und Aktuelles">
 							<img id="newsIMG" src="img/logos/News.png" alt="Aktuelles">
@@ -437,36 +442,31 @@
 						
 				
 				
-				<div class="bottomheader">
+				<div id="top-navbar" class="bottomheader">
 					
-						<ul id="bottomnavL">							
-							<li>
-								<a href="#jeansmode" title="">
+						<ul class="nav" id="bottomnavL">
+							<li class="nav-item">
+								<a class="nav-link" href="#jeansmode" title="">
 									Hosen
 								</a>
 							</li>
 							
-							<li>
-								<a href="#damenmode" title="">
+							<li class="nav-item">
+								<a class="nav-link" href="#damenmode" title="">
 								Frauen
 								</a>
 							</li>
 							
 							
 
-							<li>
-								<a href="#maennermode" title="">
+							<li class="nav-item">
+								<a class="nav-link" href="#maennermode" title="">
 								Männer
 								</a>
 							</li>
 						</ul>
-					
-						<!--<h2 id="top">
-							M
-							<span id="middle">ao</span>
-							T
-						</h2>-->
-						<table class="bottomlogo">
+
+						<table class="nav-brand bottomlogo">
 							<tbody>
 								<tr>
             						<th> mode </th>
@@ -477,22 +477,22 @@
 							</tbody>
 						</table>
 						
-						<ul id="bottomnavR">
+						<ul class="nav" id="bottomnavR">
 						
-							<li>
-								<a href="#news" title="">
+							<li class="nav-item">
+								<a class="nav-link" href="#news" title="">
 								Aktuelles
 								</a>
 							</li>
 							
-							<li>
-								<a href="#brands" title="">
+							<li class="nav-item">
+								<a class="nav-link" href="#brands" title="">
 								Marken
 								</a>
 							</li>
 							
-							<li>
-								<a href="#about" title="">
+							<li class="nav-item">
+								<a class="nav-link" href="#about" title="">
 									Kontakt
 								</a>
 							</li>
@@ -1027,7 +1027,7 @@
 				</div>
 
 				<div id="map">
-					<iframe src="https://umap.openstreetmap.fr/de/map/mode-am-oberen-tor_103070?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=null&onLoadPanel=undefined&captionBar=false"></iframe>
+					<iframe src="#https://umap.openstreetmap.fr/de/map/mode-am-oberen-tor_103070?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=null&onLoadPanel=undefined&captionBar=false"></iframe>
 					<div class="extra">
 					<p class="vollbild"><a target="_blank" href="https://umap.openstreetmap.fr/de/map/mode-am-oberen-tor_103070">Vollbildanzeige</a></p>
 
@@ -1042,6 +1042,7 @@
 			</section>
 		</main>
 	</div>
+
 		<script src="ExtSrc/lightbox/src/js/lightbox.js"></script>
 		<script>
     		lightbox.option({
@@ -1074,8 +1075,6 @@
 			  }
 			});
 		</script>-->
-        <script src="https://code.jquery.com/jquery-latest.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
         
 	</body>
 </html>
