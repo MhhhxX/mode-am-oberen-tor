@@ -8,13 +8,14 @@
 		<meta name="ROBOTS" content="INDEX, FOLLOW">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		
 		<link rel="stylesheet" media="all" type="text/css" href="fonts.css">
 		<link rel="stylesheet" media="all" type="text/css" href="index.css">
 		<link href="ExtSrc/lightbox/src/css/lightbox.css" rel="stylesheet">
 		<link rel="shortcut icon" href="img/logos/Mode_am_oberen_Tor_Logo_quadratisch.ico" />
-		
-		<script src="https://code.jquery.com/jquery-latest.js"></script>
+
 		<script src="js/jquery.mobile.custom.min.js"></script>
 		<script src="js/jquery.scrollTo.min.js"></script>
 		<script src="js/jquery.localScroll.min.js"></script>
@@ -1073,5 +1074,8 @@
 			  }
 			});
 		</script>-->
+        <script src="https://code.jquery.com/jquery-latest.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        
 	</body>
 </html>
