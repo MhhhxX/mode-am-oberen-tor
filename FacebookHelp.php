@@ -1,28 +1,31 @@
 <?php
 	require_once __DIR__ . '/vendor/autoload.php';
-	require_once __DIR__ . '/Logger.php';
 
 	/**
 	 * 
 	 */
-	 class FacebookHelp extends Logger
+	 class FacebookHelp
 	 {
+	 	private $app_id, $app_secret, $graph_version, $access_token;
 	 	
-	 	function __construct()
+	 	public function __construct($app_id, $app_secret, $graph_version, $access_token)
 	 	{
-	 		parent::__construct1('NewsFeed-1.1/');
+	 		$this->app_id = $app_id;
+	 		$this->app_secret = $app_secret;
+	 		$this->graph_version = $graph_version;
+	 		$this->access_token = $access_token;
 	 	}
 
 
-	 	public function generateSession($app_id, $app_secret, $graph_version, $access_token)
+	 	public function generateSession()
 	 	{
 	 		$session = new Facebook\Facebook([
-		  			'app_id' => $app_id,
-		  			'app_secret' => $app_secret,
-		  			'default_graph_version' => $graph_version,
+		  			'app_id' => $this->app_id,
+		  			'app_secret' => $this->app_secret,
+		  			'default_graph_version' => $this->graph_version,
 				]);
 
-	 		$session->setDefaultAccessToken($access_token);
+	 		$session->setDefaultAccessToken($this->access_token);
 
 	 		return $session;
 	 	}
@@ -36,13 +39,10 @@
 			}
 			catch (Facebook\Exceptions\FacebookResponseException $e) 
 			{
-				parent::writelog("ErrorLog.txt", "Error in function generateGraphNode(): " . $e->getMessage(), "a+");
 				return NULL;
 
 			} catch (Facebook\Exceptions\FacebookSDKException $e) 
 			{
-				// if something went wrong the reason is going to be written into an error log file
-				parent::writelog("ErrorLog.txt", "Error in function generateGraphNode(): " . $e->getMessage(), "a+");
 				return NULL;
 			}
 
@@ -58,13 +58,10 @@
 			}
 			catch (Facebook\Exceptions\FacebookResponseException $e) 
 			{
-				parent::writelog("ErrorLog.txt", "Error in function generateGraphUser(): " . $e->getMessage(), "a+");
 				return NULL;
 
 			} catch (Facebook\Exceptions\FacebookSDKException $e) 
 			{
-				// if something went wrong the reason is going to be written into an error log file
-				parent::writelog("ErrorLog.txt", "Error in function generateGraphUser(): " . $e->getMessage(), "a+");
 				return NULL;
 			}
 
@@ -80,13 +77,10 @@
 			}
 			catch (Facebook\Exceptions\FacebookResponseException $e) 
 			{
-				parent::writelog("ErrorLog.txt", "Error in function generateGraphEdge(): " . $e->getMessage(), "a+");
 				return NULL;
 
 			} catch (Facebook\Exceptions\FacebookSDKException $e) 
 			{
-				// if something went wrong the reason is going to be written into an error log file
-				parent::writelog("ErrorLog.txt", "Error in function generateGraphEdge(): " . $e->getMessage(), "a+");
 				return NULL;
 			}
 
@@ -102,13 +96,10 @@
 			}
 			catch (Facebook\Exceptions\FacebookResponseException $e) 
 			{
-				parent::writelog("ErrorLog.txt", "Error in function generateGraphPicture(): " . $e->getMessage(), "a+");
 				return NULL;
 
 			} catch (Facebook\Exceptions\FacebookSDKException $e) 
 			{
-				// if something went wrong the reason is going to be written into an error log file
-				parent::writelog("ErrorLog.txt", "Error in function generateGraphPicture(): " . $e->getMessage(), "a+");
 				return NULL;
 			}
 
