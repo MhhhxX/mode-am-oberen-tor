@@ -970,7 +970,7 @@
 				</div>
 
 				<div id="map">
-					<iframe src="#https://umap.openstreetmap.fr/de/map/mode-am-oberen-tor_103070?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=null&onLoadPanel=undefined&captionBar=false"></iframe>
+					<iframe src="https://umap.openstreetmap.fr/de/map/mode-am-oberen-tor_103070?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=null&onLoadPanel=undefined&captionBar=false"></iframe>
 					<div class="extra">
 					<p class="vollbild"><a target="_blank" href="https://umap.openstreetmap.fr/de/map/mode-am-oberen-tor_103070">Vollbildanzeige</a></p>
 

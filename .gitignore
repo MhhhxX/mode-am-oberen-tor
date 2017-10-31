@@ -1,0 +1,14 @@
+furtherNews/
+ExtSrc/
+font/
+js/
+imgDownloader/
+img/
+Ajax/
+vendor/
+Bilder/
+NewsFeed-1.1/
+composer.*
+scrollen.js
+startFacebookApp.sh
+*~
