@@ -6,9 +6,11 @@
 	 */
 	 class FacebookHelp
 	 {
+	 	private static $fbHelp;
 	 	private $app_id, $app_secret, $graph_version, $access_token;
+	 	private $session;
 	 	
-	 	public function __construct($app_id, $app_secret, $graph_version, $access_token)
+	 	private function __construct($app_id, $app_secret, $graph_version, $access_token)
 	 	{
 	 		$this->app_id = $app_id;
 	 		$this->app_secret = $app_secret;
@@ -16,25 +18,35 @@
 	 		$this->access_token = $access_token;
 	 	}
 
+	 	public static function newInstance($app_id, $app_secret, $graph_version, $access_token) {
+	 		if (self::$fbHelp == null) 
+	 			return (self::$fbHelp = new FacebookHelp($app_id, $app_secret, $graph_version, $access_token));
+	 		return self::$fbHelp;
+	 	}
 
 	 	public function generateSession()
 	 	{
-	 		$session = new Facebook\Facebook([
-		  			'app_id' => $this->app_id,
-		  			'app_secret' => $this->app_secret,
-		  			'default_graph_version' => $this->graph_version,
-				]);
+	 		if ($this->app_id == NULL || $this->app_secret == NULL || 
+	 			$this->graph_version == NULL || $this->$access_token == NULL)
+	 			return false;
+	 		if ($this->session == NULL) {
+		 		$this->$session = new Facebook\Facebook([
+			  			'app_id' => $this->app_id,
+			  			'app_secret' => $this->app_secret,
+			  			'default_graph_version' => $this->graph_version,
+					]);
 
-	 		$session->setDefaultAccessToken($this->access_token);
+		 		$this->$session->setDefaultAccessToken($this->access_token);
+		 	}
 
-	 		return $session;
+	 		return $this->$session;
 	 	}
 
-	 	public function generateGraphNode($request, $session)
+	 	public function requestGraphNode($request)
 	 	{
 	 		try
 	 		{
-		 		$response = $session->get($request);
+		 		$response = $this->session->get($request);
 			  	$graphNode = $response->getGraphNode();
 			}
 			catch (Facebook\Exceptions\FacebookResponseException $e) 
@@ -49,11 +61,11 @@
 			return $graphNode;
 	 	}
 
-	 	public function generateGraphUser($request, $session)
+	 	public function requestGraphUser($request)
 	 	{
 	 		try
 	 		{
-		 		$response = $session->get($request);
+		 		$response = $this->$session->get($request);
 			  	$graphUser = $response->getGraphUser();
 			}
 			catch (Facebook\Exceptions\FacebookResponseException $e) 
@@ -68,11 +80,11 @@
 			return $graphUser;
 	 	}
 
-	 	public function generateGraphEdge($request, $session)
+	 	public function requestGraphEdge($request)
 	 	{
 	 		try
 	 		{
-		 		$response = $session->get($request);
+		 		$response = $this->$session->get($request);
 			  	$graphEdge = $response->getGraphEdge();
 			}
 			catch (Facebook\Exceptions\FacebookResponseException $e) 
@@ -87,11 +99,11 @@
 			return $graphEdge;
 	 	}
 
-	 	public function generateGraphPicture($request, $session)
+	 	public function requestGraphPicture($request)
 	 	{
 	 		try
 	 		{
-		 		$response = $session->get($request);
+		 		$response = $this->$session->get($request);
 			  	$graphPicture = $response->getGraphPicture();
 			}
 			catch (Facebook\Exceptions\FacebookResponseException $e) 
@@ -105,5 +117,6 @@
 
 			return $graphPicture;
 	 	}
+
 	 } 
  ?>
