@@ -7,9 +7,16 @@ class FbImage {
 	private const IMGURL_PATTERN = '#https://scontent.xx.fbcdn.net/.*?\.jpg.*#';
 
 	public function __construct($imageUrl, $orientation) {
-			
-		setOrientation($orientation);
-		setImageUrl($imageUrl);
+		try {
+			setOrientation($orientation);
+		} catch (OrientationException $e) {
+			throw $e;
+		}
+		try{
+			setImageUrl($imageUrl);
+		} catch (ImageUrlException $e1) {
+			throw $e1;
+		}
 	}
 
 	public function setImageUrl($imageUrl) {
@@ -19,9 +26,9 @@ class FbImage {
 	}
 
 	public function setOrientation($orientation) {
-		if ($orientation != 'p' || $orientation != 'l')
+		if ($orientation != 'p' || $orientation != 'l' || $orientation != 's')
 			throw new OrientationException("Wrong orientation type for value "  . $orientation . 
-				". Only l=landscape and p=portrait are allowed");
+				". Only l=landscape, p=portrait and s=squared are allowed");
 		$this->orientation = $orientation;
 	}
 
