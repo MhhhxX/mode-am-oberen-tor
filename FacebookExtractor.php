@@ -21,11 +21,17 @@ class FacebookExtractor {
 	public function parseFeed($graphEdge) {
 		$postArray = array();
 		foreach($graphEdge as $key => $post) {
+			$postId = $post->getField('id');
+			$type = $post->getField('type');
+			$message = $post->getField('message');
+			$story = $post->getField('story');
+			$createdTime = $post->getField('created_time');
 			$attachmentsNode;
 			$imageArray = array();
-			if(!($attachmentsNode = $fbHelp->requestGraphNode('/' . $post->getField('id') . '?fields=attachments')))
+			if(!($attachmentsNode = $fbHelp->requestGraphNode('/' . $postId . '?fields=attachments')))
 				echo "Fehler bitte Log lesen!";
 			$media = $attachmentsNode->getField('attachments');
+			// collect attached media files
 			if (($submedia = $media[0]->getField('subattachments')) == true) {	// post has multiple images
 				foreach ($submedia as $key1 => $mediaelem) {
 					$pictureLink = getPictureLink($mediaelem);
@@ -37,7 +43,20 @@ class FacebookExtractor {
 				$orientation = calcOrientation($pictureLink);
 				$imageArray[] = new FbImage($pictureLink, $orientation);
 			}
+			if ($post->getField('type') == 'event') {
+				$eventId = calcEventId($post->getField('id'));
+				$eventPost;
+				if (!($eventPost = $fbHelp->requestGraphNode('/' . $eventId)))
+					continue;
+				$postArray[] = new EventPost($postId, $eventId, $type, $message, $story, $imageArray, $createdTime, 
+								$eventPost->getField('start_time'), $eventPost->getField('end_time'), 
+									$eventPost->getField('place'), $eventPost->getField('name'));
+			} else {
+				$postArray[] = new BasePost($postId, $type, $message, $story, $imageUrls, $createdTime);
+			}
 		}
+
+		return $postArray;
 	}
 
 	private function calcOrientation($imageurl) {
