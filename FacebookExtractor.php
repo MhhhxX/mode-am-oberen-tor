@@ -1,14 +1,15 @@
 <?php
-require 'FbImage.php';
-require "FacebookHelp.php";
-require "config.php";
+require_once 'FbImage.php';
+require_once "FacebookHelp.php";
+require_once "EventPost.php";
+require_once "BasePost.php";
 
 class FacebookExtractor {
 	private $fbHelp;
 
-	public function __construct() {
-		$fbHelp = FacebookHelp::newInstance($app_id, $app_secret, $graph_version, $access_token);
-		$fbHelp->generateSession();
+	public function __construct($fbHelp) {
+		$this->fbHelp = $fbHelp;
+		$this->fbHelp->generateSession();
 	}
 
 	/*
@@ -22,37 +23,38 @@ class FacebookExtractor {
 		$postArray = array();
 		foreach($graphEdge as $key => $post) {
 			$postId = $post->getField('id');
-			$type = $post->getField('type');
+			$type;
 			$message = $post->getField('message');
 			$story = $post->getField('story');
 			$createdTime = $post->getField('created_time');
 			$attachmentsNode;
 			$imageArray = array();
-			if(!($attachmentsNode = $fbHelp->requestGraphNode('/' . $postId . '?fields=attachments')))
+			if(!($attachmentsNode = $this->fbHelp->requestGraphNode('/' . $postId . '?fields=attachments,type')))
 				echo "Fehler bitte Log lesen!";
+			$type = $attachmentsNode->getField('type');
 			$media = $attachmentsNode->getField('attachments');
 			// collect attached media files
 			if (($submedia = $media[0]->getField('subattachments')) == true) {	// post has multiple images
 				foreach ($submedia as $key1 => $mediaelem) {
-					$pictureLink = getPictureLink($mediaelem);
-					$orientation = calcOrientation($pictureLink);
+					$pictureLink = self::getPictureLink($mediaelem, -1);
+					$orientation = self::calcOrientation($pictureLink);
 					$imageArray[] = new FbImage($pictureLink, $orientation);
 				}
 			} else {
-				$pictureLink = getPictureLink($media);
-				$orientation = calcOrientation($pictureLink);
+				$pictureLink = self::getPictureLink($media, 0);
+				$orientation = self::calcOrientation($pictureLink);
 				$imageArray[] = new FbImage($pictureLink, $orientation);
 			}
-			if ($post->getField('type') == 'event') {
-				$eventId = calcEventId($post->getField('id'));
+			if ($type == 'event') {
+				$eventId = self::calcEventId($post->getField('id'));
 				$eventPost;
-				if (!($eventPost = $fbHelp->requestGraphNode('/' . $eventId)))
+				if (!($eventPost = $this->fbHelp->requestGraphNode('/' . $eventId)))
 					continue;
 				$postArray[] = new EventPost($postId, $eventId, $type, $message, $story, $imageArray, $createdTime, 
 								$eventPost->getField('start_time'), $eventPost->getField('end_time'), 
 									$eventPost->getField('place'), $eventPost->getField('name'));
 			} else {
-				$postArray[] = new BasePost($postId, $type, $message, $story, $imageUrls, $createdTime);
+				$postArray[] = new BasePost($postId, $type, $message, $story, $imageArray, $createdTime);
 			}
 		}
 
@@ -69,11 +71,14 @@ class FacebookExtractor {
 	}
 
 	private function calcEventId($id) {
-		$eventId = split("_", $id);
+		$eventId = preg_split("/_/", $id);
+		var_dump($eventId);
 		return $eventId[1];
 	}
 
-	private function getPictureLink($jsonNode) {
+	private function getPictureLink($jsonNode, $index) {
+		if ($index == 0)
+			return $jsonNode[$index]->getField('media')->getField('image')->getField('src');
 		return $jsonNode->getField('media')->getField('image')->getField('src');
 	}
 }

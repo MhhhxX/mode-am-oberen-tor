@@ -8,12 +8,12 @@ class FbImage {
 
 	public function __construct($imageUrl, $orientation) {
 		try {
-			setOrientation($orientation);
+			self::setOrientation($orientation);
 		} catch (OrientationException $e) {
 			throw $e;
 		}
 		try{
-			setImageUrl($imageUrl);
+			self::setImageUrl($imageUrl);
 		} catch (ImageUrlException $e1) {
 			throw $e1;
 		}
@@ -26,7 +26,7 @@ class FbImage {
 	}
 
 	public function setOrientation($orientation) {
-		if ($orientation != 'p' || $orientation != 'l' || $orientation != 's')
+		if ($orientation != 'p' && $orientation != 'l' && $orientation != 's')
 			throw new OrientationException("Wrong orientation type for value "  . $orientation . 
 				". Only l=landscape, p=portrait and s=squared are allowed");
 		$this->orientation = $orientation;
