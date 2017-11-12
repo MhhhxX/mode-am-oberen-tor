@@ -33,7 +33,7 @@ class EventPost extends BasePost {
 	}
 
 	public function getEventName() {
-		return eventName;
+		return $this->eventName;
 	}
 
 	public function setEventId($eventId) {
@@ -54,6 +54,19 @@ class EventPost extends BasePost {
 
 	public function setEventName($eventName) {
 		$this->eventName = $eventName;
+	}
+
+	public function toHtml() {
+		echo '<div class="tl-circ"></div>';
+    	echo '<div class="timeline-panel">';
+    	echo '<div class="tl-heading">';
+    	echo '<h4>' . $this->getEventName() . '</h4>';
+    	echo '<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> ' . $this->getCreatedTime()->format("d. F") . '</small></p>';
+    	echo '</div>';
+    	echo '<div class="tl-body">';
+    	echo '<p>' . $this->getMessage() . '</p>';
+    	echo '</div>';
+    	echo '</div>';
 	}
 }
 ?>

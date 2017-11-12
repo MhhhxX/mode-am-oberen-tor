@@ -822,8 +822,9 @@ footer img
 .news
 {
     /*#C3C58C*/
-    background-image: url("img/News/aktuelles.png");
-    background-size: 200%;
+    /*background-image: url("img/News/aktuelles.png");
+    background-size: 200%;*/
+    background: #333;
     z-index: 2;
 }
 

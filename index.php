@@ -558,9 +558,7 @@
 				<h1 id="news">Aktuelles</h1>
 				<div class="container">
   					<ul class="timeline">
-  						<?php 
-  							error_reporting(E_ALL);
-							ini_set('display_errors', 1);
+  						<?php
   							include 'newsfeed.php'; 
   						?>
   					</ul>

@@ -17,23 +17,13 @@ $fbHelp = FacebookHelp::newInstance($app_id, $app_secret, $graph_version, $acces
 $session = $fbHelp->generateSession();
 $extractor = new FacebookExtractor($fbHelp);
 
-$feedEdge = $fbHelp->requestGraphEdge($user_id . '/feed?limit=' . $limit . 'offset=' . $post_offset);
+$feedEdge = $fbHelp->requestGraphEdge($user_id . '/feed?limit=' . $limit . '&offset=' . $post_offset);
 $postList = $extractor->parseFeed($feedEdge);
 
 foreach ($postList as $key => $post) {
 	$post_pos = (($key%2)==1) ? 'class="timeline-inverted"' : '';
 	echo '<li ' . $post_pos . '>';
-    echo '<div class="tl-circ"></div>';
-    echo '<div class="timeline-panel">';
-    echo '<div class="tl-heading">';
-    echo '<h4>' . $post->getStory() . '</h4>';
-    echo '<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> ' . $post->getCreatedTime()->format("d. F") . '</small></p>';
-    echo '</div>';
-    echo '<div class="tl-body">';
-    echo '<p>' . $post->getMessage() . '</p>';
-    echo '</div>';
-    echo '</div>';
+    $post->toHtml();
     echo '</li>';
 }
-return;
 ?>
