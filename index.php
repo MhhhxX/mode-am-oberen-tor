@@ -11,6 +11,7 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		
+		<link rel="stylesheet" type="text/css" href="css/timeline.css">
 		<link rel="stylesheet" media="all" type="text/css" href="fonts.css">
 		<link rel="stylesheet" media="all" type="text/css" href="index.css">
 		<link href="ExtSrc/lightbox/src/css/lightbox.css" rel="stylesheet">
@@ -151,51 +152,6 @@
 
 					$(".jeansmode, .frauenmode, .maennermode, .about, .mainbackground").css("height", browserHeight);
 
-					update();
-
-				function update()
-				{
-					rightPictures = $(".post-picture-right").find("img").toArray();
-					leftPictures = $(".post-picture-left").find("li").toArray();
-					Posts = $(".news").find("figure").toArray();
-					amountOfListElements = rightPictures.length/Posts.length;
-
-					for (var i = 0; i < Posts.length; i++)
-					{
-
-						$(Posts[i]).find(".post-picture-right").find("li").each(function(j){
-							if (($(leftPictures[i]).innerWidth() / $(leftPictures[i]).innerHeight()) < 1)
-							{
-								$(this).css("height", ($(leftPictures[i]).innerHeight()) / $(this).parent().find("li").toArray().length);
-								if ($(this).parent().find("li").toArray().length > 3)
-
-									$(this).css("height", $(leftPictures[i]).innerHeight() / 3);
-							}
-
-							else
-							{
-								$(this).css("height", $(leftPictures[i]).innerHeight() / 2);
-							}
-
-						});
-					}
-
-
-
-					for(var i = 0; i < rightPictures.length; i++)
-					{
-						if (($(rightPictures[i]).innerWidth() / $(rightPictures[i]).innerHeight()) >= 1)
-						{
-							$(rightPictures[i]).css("top", "0px");
-							$(rightPictures[i]).css("height", "100%");
-						}
-
-					}
-
-					var newsBlocks = $(".news").find("figure").find(".newsblock").toArray();
-					var counter = 0, erg = 0;
-					triggerPos1 = $(".about").offset().top - $(".bottomheader").height();
-				}
 
 					$('button').click(function()
     				{
@@ -205,13 +161,13 @@
 
 				            setTimeout(function()
 				            	{
-				            		update();
 				            		triggerPos1 = $('.about').offset().top - 60;
 				            	}, 500);
 				        });
     				});
 
 					var triggerPos = $(".jeansmode").offset().top - 60;		// gibt an ab welchem y-Wert die Animation gestartet werden soll (in Pixel)
+					triggerPos1 = $('.about').offset().top - 60;
 
 					var isIE10 = !!navigator.userAgent.match(/MSIE 10/);
 					var isIE11 = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
@@ -598,18 +554,19 @@
 				</article>
 			</section>
 			
-			<section class="news">
-			
+			<section class="news d-block">
 				<h1 id="news">Aktuelles</h1>
-					<div class="allNews" style="margin=0px; width=100%">
-						<?php
-							$file = file_get_contents('NewsFeed-1.1/NewsFeed-1.1.html');
-							
-							echo $file;
-						 ?>
-					</div>
+				<div class="container">
+  					<ul class="timeline">
+  						<?php 
+  							error_reporting(E_ALL);
+							ini_set('display_errors', 1);
+  							include 'newsfeed.php'; 
+  						?>
+  					</ul>
 
-				 <button>Ältere Posts laden?</button>
+					<button>Ältere Posts laden?</button>
+				</div>
 				
 			</section>
 

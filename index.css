@@ -381,7 +381,7 @@ img {
     border-bottom: 4px solid #DD3700;
 }
 
-li {
+header li, .brands li {
     list-style: none outside none;
     margin: 0 auto;
     padding: 0;

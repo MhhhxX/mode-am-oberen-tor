@@ -72,7 +72,6 @@ class FacebookExtractor {
 
 	private function calcEventId($id) {
 		$eventId = preg_split("/_/", $id);
-		var_dump($eventId);
 		return $eventId[1];
 	}
 
