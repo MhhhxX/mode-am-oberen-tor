@@ -73,8 +73,65 @@ class BasePost {
     	echo '</div>';
     	echo '<div class="tl-body">';
     	echo '<p>' . $this->getMessage() . '</p>';
+    	$this->imgToHtml();
     	echo '</div>';
     	echo '</div>';
+	}
+
+	private function imgToHtml() {
+		$orientation = $this->imageUrls[0]->getOrientation();
+		echo '<div class="row collapse" >';
+		if (count($this->imageUrls) == 1) {
+			echo '<div class"col-12">';
+			echo '<img src="' . $this->imageUrls[0]->getImageUrl() . '">';
+			echo '</div>';
+			echo '</div>';
+			return;
+		}
+		foreach ($this->imageUrls as $key => $img) {
+			if ($key == 4) break;
+			if ($key == 0) {
+				switch ($orientation) {
+					case 'p':
+						echo '<div class="col-6">';
+						echo '<img src="' . $img->getImageUrl() . '">';
+						echo '</div>';
+						echo '<div class="col-6">';
+						break;
+
+					case 'l':
+						echo '<div class="col-12">';
+						echo '<img src="' . $img->getImageUrl() . '">';
+						echo '</div>';
+						echo '<div class="col-12">';
+						break;
+					
+					default:
+						# code...
+						break;
+				}
+				continue;
+			}
+			switch ($orientation) {
+				case 'p':
+					echo '<div class="col-12">';
+					echo '<img src="' . $img->getImageUrl() . '">';
+					echo '</div>';
+					break;
+
+				case 'l':
+					echo '<div class="col-4">';
+					echo '<img src="' . $img->getImageUrl() . '">';
+					echo '</div>';
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+		}
+		echo '</div>';
+		echo '</div>';
 	}
 }
 ?>

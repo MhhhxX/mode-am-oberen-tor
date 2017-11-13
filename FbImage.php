@@ -39,5 +39,13 @@ class FbImage {
 	public function getImageUrl() {
 		return $this->imageUrl;
 	}
+
+	public function getImageHeight() {
+		return getimagesize($this->imageUrl)[1];
+	}
+
+	public function getImageWidth() {
+		return getimagesize($this->imageUrl)[0];
+	}
 }
 ?>

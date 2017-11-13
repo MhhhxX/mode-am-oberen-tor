@@ -36,12 +36,12 @@ class FacebookExtractor {
 			// collect attached media files
 			if (($submedia = $media[0]->getField('subattachments')) == true) {	// post has multiple images
 				foreach ($submedia as $key1 => $mediaelem) {
-					$pictureLink = self::getPictureLink($mediaelem, -1);
+					$pictureLink = self::getPictureLink($mediaelem);
 					$orientation = self::calcOrientation($pictureLink);
 					$imageArray[] = new FbImage($pictureLink, $orientation);
 				}
 			} else {
-				$pictureLink = self::getPictureLink($media, 0);
+				$pictureLink = self::getPictureLink($media[0]);
 				$orientation = self::calcOrientation($pictureLink);
 				$imageArray[] = new FbImage($pictureLink, $orientation);
 			}
@@ -75,9 +75,7 @@ class FacebookExtractor {
 		return $eventId[1];
 	}
 
-	private function getPictureLink($jsonNode, $index) {
-		if ($index == 0)
-			return $jsonNode[$index]->getField('media')->getField('image')->getField('src');
+	private function getPictureLink($jsonNode) {
 		return $jsonNode->getField('media')->getField('image')->getField('src');
 	}
 }
