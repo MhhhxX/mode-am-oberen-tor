@@ -80,14 +80,16 @@ class BasePost {
 
 	private function imgToHtml() {
 		$orientation = $this->imageUrls[0]->getOrientation();
-		echo '<div class="row collapse" >';
 		if (count($this->imageUrls) == 1) {
+			echo '<div class="row collapse" >';
 			echo '<div class"col-12">';
 			echo '<img src="' . $this->imageUrls[0]->getImageUrl() . '">';
 			echo '</div>';
 			echo '</div>';
 			return;
 		}
+		echo '<div data-height="heightfix" class="row collapse" >';
+
 		foreach ($this->imageUrls as $key => $img) {
 			if ($key == 4) break;
 			if ($key == 0) {
@@ -107,7 +109,6 @@ class BasePost {
 						break;
 					
 					default:
-						# code...
 						break;
 				}
 				continue;
@@ -126,7 +127,6 @@ class BasePost {
 					break;
 				
 				default:
-					# code...
 					break;
 			}
 		}

@@ -31,6 +31,7 @@
 		<script src="ExtSrc/pace-1.0.2/pace.min.js"></script>
 		<script src="ExtSrc/jInvertScroll/dist/js/jquery.jInvertScroll.min.js"></script>
 		<script src="js/handle.scrollspy.js"></script>
+		<script src="js/heightfix.js" type="text/javascript"></script>
 
 		<link rel="stylesheet" type="text/css" href="ExtSrc/pace-1.0.2/themes/red/pace-theme-center-circle.css">
 		<link rel="stylesheet" type="text/css" href="ExtSrc/jInvertScroll/dist/css/jInvertScroll.css">
@@ -89,6 +90,7 @@
 		<script type="text/javascript">
 			$(window).load(function()
 			{
+				$(".timeline").heightfix();
 				$.get("Opened.html", function(data, status) {
 						$(".frontSide tbody").append(data);
 					});
@@ -141,92 +143,91 @@
 		<script type="text/javascript">
 		$(window).load(function()
 		{
+			var browserHeight = $(window).innerHeight();
+			var browserWidth = $(window).innerWidth();
+			var rightPictures = $(".post-picture-right").find("img").toArray();
+			var leftPictures = $(".post-picture-left").find("li").toArray();
+			var Posts = $(".news").find("figure").toArray();
+			var amountOfListElements = rightPictures.length/Posts.length;
+			var triggerPos1;
 
-					var browserHeight = $(window).innerHeight();
-					var browserWidth = $(window).innerWidth();
-					var rightPictures = $(".post-picture-right").find("img").toArray();
-					var leftPictures = $(".post-picture-left").find("li").toArray();
-					var Posts = $(".news").find("figure").toArray();
-					var amountOfListElements = rightPictures.length/Posts.length;
-					var triggerPos1;
-
-					$(".jeansmode, .frauenmode, .maennermode, .about, .mainbackground").css("height", browserHeight);
+			$(".jeansmode, .frauenmode, .maennermode, .about, .mainbackground").css("height", browserHeight);
 
 
-					$('button').click(function()
-    				{
-    					$.get("furtherNews.php", function(data, status){
-				            //alert("Data: " + data + "\nStatus: " + status);
-				            $(".news .allNews").append(data);
+			$('button').click(function()
+			{
+				$.get("furtherNews.php", function(data, status){
+		            //alert("Data: " + data + "\nStatus: " + status);
+		            $(".news .allNews").append(data);
 
-				            setTimeout(function()
-				            	{
-				            		triggerPos1 = $('.about').offset().top - 60;
-				            	}, 500);
-				        });
-    				});
+		            setTimeout(function()
+		            	{
+		            		triggerPos1 = $('.about').offset().top - 60;
+		            	}, 500);
+		        });
+			});
 
-					var triggerPos = $(".jeansmode").offset().top - 60;		// gibt an ab welchem y-Wert die Animation gestartet werden soll (in Pixel)
-					triggerPos1 = $('.about').offset().top - 60;
+			var triggerPos = $(".jeansmode").offset().top - 60;		// gibt an ab welchem y-Wert die Animation gestartet werden soll (in Pixel)
+			triggerPos1 = $('.about').offset().top - 60;
 
-					var isIE10 = !!navigator.userAgent.match(/MSIE 10/);
-					var isIE11 = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
+			var isIE10 = !!navigator.userAgent.match(/MSIE 10/);
+			var isIE11 = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
 
-					var distance = $(".bottomheader").height();
+			var distance = $(".bottomheader").height();
 
-					if (isIE10 || isIE11)
+			if (isIE10 || isIE11)
+			{
+
+				$(window).on('scroll', function ()
+				{
+					if ($(window).scrollTop() > triggerPos)
+					{
+						$(".frontheader").addClass("smaller-header");
+						$(".bottomheader").addClass("bottomheader-rotate");
+						$(".frontheaderMobile").addClass("smaller-header");
+						$("footer").css("display", "block");
+
+					}
+					if ($(window).scrollTop() < triggerPos)
 					{
 
-						$(window).on('scroll', function ()
-						{
-							if ($(window).scrollTop() > triggerPos)
-							{
-								$(".frontheader").addClass("smaller-header");
-								$(".bottomheader").addClass("bottomheader-rotate");
-								$(".frontheaderMobile").addClass("smaller-header");
-								$("footer").css("display", "block");
+						$(".bottomheader").removeClass("bottomheader-rotate");
+						$("footer").css("display", "none");
+						$(".frontheader").removeClass("smaller-header");
+						$(".frontheaderMobile").removeClass("smaller-header");
+					}
+				});
+			}
+			else
+			{
 
-							}
-							if ($(window).scrollTop() < triggerPos)
-							{
+				$(window).scroll(function ()
+				{
+					if ($(window).scrollTop() > triggerPos)
+					{
+						$(".header").addClass("smaller-header");
+						$("footer").css("display", "block");
 
-								$(".bottomheader").removeClass("bottomheader-rotate");
-								$("footer").css("display", "none");
-								$(".frontheader").removeClass("smaller-header");
-								$(".frontheaderMobile").removeClass("smaller-header");
-							}
-						});
+					}
+					if ($(window).scrollTop() < triggerPos)
+					{
+						$("footer").css("display", "none");
+						$(".header").removeClass("smaller-header");
+					}
+
+					if ($(window).scrollTop() > triggerPos1)
+					{
+
+						$(".header").addClass("side-header");
 					}
 					else
-					{
-
-						$(window).scroll(function ()
-						{
-							if ($(window).scrollTop() > triggerPos)
-							{
-								$(".header").addClass("smaller-header");
-								$("footer").css("display", "block");
-
-							}
-							if ($(window).scrollTop() < triggerPos)
-							{
-								$("footer").css("display", "none");
-								$(".header").removeClass("smaller-header");
-							}
-
-							if ($(window).scrollTop() > triggerPos1)
-							{
-
-								$(".header").addClass("side-header");
-							}
-							else
-								$(".header").removeClass("side-header");
+						$(".header").removeClass("side-header");
 
 
-						});
-					}
+				});
+			}
 
-			});
+		});
 		</script>
 
 		<script type="text/javascript">

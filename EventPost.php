@@ -75,7 +75,7 @@ class EventPost extends BasePost {
 		$imgCount = count($imageUrls);
 		if ($imgCount == 0) return; // no pictures in the array
 		$orientation = $imageUrls[0]->getOrientation();
-		echo '<div class="row collapse" >';
+		echo '<div data-height="heightfix" class="row collapse" >';
 		if ($imgCount == 1) {
 			echo '<div class"col-12">';
 			echo '<img src="' . $imageUrls[0]->getImageUrl() . '">';
