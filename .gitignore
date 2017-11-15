@@ -1,7 +1,9 @@
 furtherNews/
 ExtSrc/
 font/
-js/
+jquery.localScroll.min.js
+jquery.mobile.custom.min.js
+jquery.scrollTo.min.js
 imgDownloader/
 img/
 Ajax/

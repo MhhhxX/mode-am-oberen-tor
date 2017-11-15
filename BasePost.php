@@ -81,14 +81,14 @@ class BasePost {
 	private function imgToHtml() {
 		$orientation = $this->imageUrls[0]->getOrientation();
 		if (count($this->imageUrls) == 1) {
-			echo '<div class="row collapse" >';
+			echo '<div class="row" >';
 			echo '<div class"col-12">';
 			echo '<img src="' . $this->imageUrls[0]->getImageUrl() . '">';
 			echo '</div>';
 			echo '</div>';
 			return;
 		}
-		echo '<div data-height="heightfix" class="row collapse" >';
+		echo '<div data-height="heightfix" class="row" >';
 
 		foreach ($this->imageUrls as $key => $img) {
 			if ($key == 4) break;
@@ -96,7 +96,7 @@ class BasePost {
 				switch ($orientation) {
 					case 'p':
 						echo '<div class="col-6">';
-						echo '<img src="' . $img->getImageUrl() . '">';
+						echo '<img data-orientation="' . $img->getOrientation() . '" src="' . $img->getImageUrl() . '">';
 						echo '</div>';
 						echo '<div class="col-6">';
 						break;
@@ -115,8 +115,12 @@ class BasePost {
 			}
 			switch ($orientation) {
 				case 'p':
-					echo '<div class="col-12">';
-					echo '<img src="' . $img->getImageUrl() . '">';
+					$currOrientation = $img->getOrientation();
+					echo '<div style="overflow:hidden;" class="col-12">';
+					if ($currOrientation == 'p')
+						echo '<img src="' . $img->getImageUrl() . '">';
+					else
+						echo '<img style="height:100%;" src="' . $img->getImageUrl() . '">';
 					echo '</div>';
 					break;
 
