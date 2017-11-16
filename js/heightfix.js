@@ -10,11 +10,12 @@
     		var imgCount = imgs.length;
     		for (var j = 1; j <= imgCount; j++) {
     			if (orientation == 'p') {
-    				$(imgs[j]).parent().height(widthheight/(imgCount-1));
+    				$(imgs[j]).parent().parent().height(widthheight/(imgCount-1)-4);
     			} else {
-    				$(imgs[j]).parent().width(widthheight/(imgCount-1));
+    				$(imgs[j]).parent().parent().width(widthheight/(imgCount-1));
     			}
     		}
+            $(elements[i]).removeClass("show");
     	});
     };
  

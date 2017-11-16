@@ -80,25 +80,35 @@ class BasePost {
 
 	private function imgToHtml() {
 		$orientation = $this->imageUrls[0]->getOrientation();
+		echo '<button class="btn btn-default"type="button" data-toggle="collapse" data-target="#' . $this->getPostId() . '" aria-expanded="true" aria-controls="' . $this->getPostId() . '">';
+		echo '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>Expand';
+		echo '</button>';
 		if (count($this->imageUrls) == 1) {
-			echo '<div class="row" >';
+			echo '<div class="row collapse show" id="attachments">';
 			echo '<div class"col-12">';
+			echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
 			echo '<img src="' . $this->imageUrls[0]->getImageUrl() . '">';
+			echo '</a>';
 			echo '</div>';
 			echo '</div>';
 			return;
 		}
-		echo '<div data-height="heightfix" class="row" >';
+		echo '<div data-height="heightfix" class="row collapse show" id="' . $this->getPostId() . '">';
 
 		foreach ($this->imageUrls as $key => $img) {
-			if ($key == 4) break;
+			if ($key >= 4) {
+				echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '"></a>';
+				continue;
+			}
 			if ($key == 0) {
 				switch ($orientation) {
 					case 'p':
-						echo '<div class="col-6">';
+						echo '<div class="col-6 news-padding news-padding-right">';
+						echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
 						echo '<img data-orientation="' . $img->getOrientation() . '" src="' . $img->getImageUrl() . '">';
+						echo '</a>';
 						echo '</div>';
-						echo '<div class="col-6">';
+						echo '<div class="col-6 no-padding">';
 						break;
 
 					case 'l':
@@ -116,11 +126,13 @@ class BasePost {
 			switch ($orientation) {
 				case 'p':
 					$currOrientation = $img->getOrientation();
-					echo '<div style="overflow:hidden;" class="col-12">';
+					echo '<div style="overflow:hidden;" class="col-12 news-padding news-padding-left">';
+					echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
 					if ($currOrientation == 'p')
 						echo '<img src="' . $img->getImageUrl() . '">';
 					else
 						echo '<img style="height:100%;" src="' . $img->getImageUrl() . '">';
+					echo '</a>';
 					echo '</div>';
 					break;
 
