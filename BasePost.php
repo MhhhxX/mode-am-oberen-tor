@@ -84,7 +84,7 @@ class BasePost {
 		echo '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>Expand';
 		echo '</button>';
 		if (count($this->imageUrls) == 1) {
-			echo '<div class="row collapse show" id="attachments">';
+			echo '<div class="row collapse show" id="' . $this->getPostId() . '">';
 			echo '<div class"col-12">';
 			echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
 			echo '<img src="' . $this->imageUrls[0]->getImageUrl() . '">';
