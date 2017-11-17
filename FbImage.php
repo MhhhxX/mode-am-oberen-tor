@@ -4,7 +4,7 @@ require 'exceptions/imageurlexception.php';
 class FbImage {
 	private $imageUrl;
 	private $orientation;
-	private const IMGURL_PATTERN = '#https://scontent.xx.fbcdn.net/.*?\.jpg.*#';
+	private const IMGURL_PATTERN = '#https://scontent.xx.fbcdn.net/.*?\.(jpg|png|gif|jpeg).*#';
 
 	public function __construct($imageUrl, $orientation) {
 		try {

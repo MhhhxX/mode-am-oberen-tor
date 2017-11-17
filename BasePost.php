@@ -68,10 +68,14 @@ class BasePost {
 		echo '<div class="tl-circ"></div>';
     	echo '<div class="timeline-panel">';
     	echo '<div class="tl-heading">';
-    	echo '<h4>' . $this->getStory() . '</h4>';
-    	echo '<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> ' . $this->getCreatedTime()->format("d. F") . '</small></p>';
+    	echo '<h4>' . $this->translateStory() . '</h4>';
+    	echo '<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> ' . 
+    	strftime("%e.%B", $this->getCreatedTime()->getTimestamp()) . '</small></p>';
     	echo '</div>';
-    	echo '<div class="tl-body">';
+    	if (count($this->imageUrls) > 1)
+    		echo '<div class="tl-body" data-height="heightfix">';
+    	else
+    		echo '<div class="tl-body">';
     	echo '<p>' . $this->getMessage() . '</p>';
     	$this->imgToHtml();
     	echo '</div>';
@@ -93,7 +97,11 @@ class BasePost {
 			echo '</div>';
 			return;
 		}
-		echo '<div data-height="heightfix" class="row collapse show" id="' . $this->getPostId() . '">';
+		if ($orientation == 'l') {
+			echo '<div class="landscape collapse show" id="' . $this->getPostId() . '">';
+			echo '<div class="row">';
+		} else
+			echo '<div class="row collapse show" id="' . $this->getPostId() . '">';
 
 		foreach ($this->imageUrls as $key => $img) {
 			if ($key >= 4) {
@@ -113,9 +121,12 @@ class BasePost {
 
 					case 'l':
 						echo '<div class="col-12">';
-						echo '<img src="' . $img->getImageUrl() . '">';
+						echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
+						echo '<img data-orientation="' . $img->getOrientation() . '" src="' . $img->getImageUrl() . '">';
+						echo '</a>';
 						echo '</div>';
-						echo '<div class="col-12">';
+						echo '</div>';
+						echo '<div class="row news-row-padding">';
 						break;
 					
 					default:
@@ -123,9 +134,10 @@ class BasePost {
 				}
 				continue;
 			}
+
+			$currOrientation = $img->getOrientation();
 			switch ($orientation) {
 				case 'p':
-					$currOrientation = $img->getOrientation();
 					echo '<div style="overflow:hidden;" class="col-12 news-padding news-padding-left">';
 					echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
 					if ($currOrientation == 'p')
@@ -137,8 +149,13 @@ class BasePost {
 					break;
 
 				case 'l':
-					echo '<div class="col-4">';
-					echo '<img src="' . $img->getImageUrl() . '">';
+					echo '<div class="col-4 hidden no-padding">';
+					echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
+					if ($currOrientation == 'p')
+						echo '<img style="margin-top:-50%;" src="' . $img->getImageUrl() . '">';
+					else
+						echo '<img style="height:100%; width:auto;" src="' . $img->getImageUrl() . '">';
+					echo '</a>';
 					echo '</div>';
 					break;
 				
@@ -148,6 +165,21 @@ class BasePost {
 		}
 		echo '</div>';
 		echo '</div>';
+		if ($orientation == 'l') echo '</div>';
+	}
+
+	private function translateStory() {
+		switch ($this->type) {
+			case 'photo':
+				return "Mode am oberen Tor hat " . count($this->imageUrls) . " neue Fotos hinzugefügt";
+				break;
+
+			case 'event':
+				return "Mode am obern Tor hat ein Event gepostet.";
+			
+			default:
+				break;
+		}
 	}
 }
 ?>

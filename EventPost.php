@@ -61,7 +61,8 @@ class EventPost extends BasePost {
     	echo '<div class="timeline-panel">';
     	echo '<div class="tl-heading">';
     	echo '<h4>' . $this->getEventName() . '</h4>';
-    	echo '<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> ' . $this->getCreatedTime()->format("d. F") . '</small></p>';
+    	echo '<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> ' . 
+    	strftime("%e.%B", $this->getCreatedTime()->getTimestamp()) . '</small></p>';
     	echo '</div>';
     	echo '<div class="tl-body">';
     	echo '<p>' . $this->getMessage() . '</p>';

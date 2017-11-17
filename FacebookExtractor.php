@@ -65,7 +65,7 @@ class FacebookExtractor {
 		$imageDimension = getimagesize($imageurl);
 		if ($imageDimension[0] / $imageDimension[1] < 1)
 			return 'p';
-		elseif ($imageDimension[0] / $imageDimension[1] = 1)
+		elseif ($imageDimension[0] / $imageDimension[1] == 1)
 			return 's';
 		return 'l';
 	}

@@ -29,17 +29,14 @@
 		<script src="ExtSrc/jquery.fadethis.js"></script>
 		<script src="ExtSrc/jquery.reject.min.js"></script>
 		<script src="ExtSrc/pace-1.0.2/pace.min.js"></script>
-		<script src="ExtSrc/jInvertScroll/dist/js/jquery.jInvertScroll.min.js"></script>
 		<script src="js/handle.scrollspy.js"></script>
 		<script src="js/heightfix.js" type="text/javascript"></script>
 
 		<link rel="stylesheet" type="text/css" href="ExtSrc/pace-1.0.2/themes/red/pace-theme-center-circle.css">
-		<link rel="stylesheet" type="text/css" href="ExtSrc/jInvertScroll/dist/css/jInvertScroll.css">
 
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$(window).fadeThis();
-				//$.jInvertScroll(['.allNews']);
 			});
 		</script>
 
@@ -56,32 +53,25 @@
 
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$.reject(
-				{
-					reject: {
-            		msie: 7,
-        			}
-    			});
-
-    			$(window).bind('beforeunload',function(){
-				    $.ajax({
-					  url: 'restoreNewsFeed.php',
-					  success: function(data) {
-					  }
+				$("#moreNews").click(function() {
+					var postoffset = parseInt($(this).attr("data-postoffset"));
+					postoffset += 3;
+					$(this).attr("data-postoffset", postoffset);
+					$.ajax({
+						type: "POST",
+						url: "newsfeed.php",
+						cache: false,
+						data: { 'post_offset': postoffset },
+						success: function(data){
+							$(".timeline").append(data);
+							$(data).ready(function() {
+								$(".timeline").heightfix();
+							});
+						},
+						error: function(data) {
+							alert(data.toSource());
+						},
 					});
-
-				});
-
-			});
-
-			$(window).unload(function()
-			{
-				$.ajax(
-				{
-					  url: 'restoreNewsFeed.php',
-					  success: function(data)
-					  {
-					  }
 				});
 
 			});
@@ -152,20 +142,6 @@
 			var triggerPos1;
 
 			$(".jeansmode, .frauenmode, .maennermode, .about, .mainbackground").css("height", browserHeight);
-
-
-			$('button').click(function()
-			{
-				$.get("furtherNews.php", function(data, status){
-		            //alert("Data: " + data + "\nStatus: " + status);
-		            $(".news .allNews").append(data);
-
-		            setTimeout(function()
-		            	{
-		            		triggerPos1 = $('.about').offset().top - 60;
-		            	}, 500);
-		        });
-			});
 
 			var triggerPos = $(".jeansmode").offset().top - 60;		// gibt an ab welchem y-Wert die Animation gestartet werden soll (in Pixel)
 			triggerPos1 = $('.about').offset().top - 60;
@@ -563,8 +539,11 @@
   							include 'newsfeed.php'; 
   						?>
   					</ul>
-
-					<button>Ältere Posts laden?</button>
+  					<div class="row">
+  						<div class="col-12 text-center">
+  							<button id="moreNews" data-postoffset="0" class="btn btn-primary" type="button">Ältere Posts laden?</button>
+  						</div>
+  					</div>
 				</div>
 				
 			</section>

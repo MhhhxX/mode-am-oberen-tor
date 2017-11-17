@@ -832,6 +832,10 @@ footer img
     padding: 0px;
 }
 
+.news-row-padding {
+    padding: 15px;
+}
+
 .news-padding {
     padding: 2px;
 }
@@ -847,6 +851,15 @@ footer img
 .news .collapse.show {
     display: flex;
 }
+
+.news .landscape.collapse.show {
+    display: block;
+}
+
+.hidden {
+    overflow: hidden;
+}
+
 /* About */
 .about
 {
