@@ -20,8 +20,15 @@ $extractor = new FacebookExtractor($fbHelp);
 
 $feedEdge = $fbHelp->requestGraphEdge($user_id . '/feed?limit=' . $limit . '&offset=' . $post_offset);
 $postList = $extractor->parseFeed($feedEdge);
+$tempMonth = ($post_offset == 0) ? $postList[1]->getCreatedTime()->format("F") : $_POST['last_month'];
 
 foreach ($postList as $key => $post) {
+
+	if (($post_offset + $key) == 0 || $post->getCreatedTime()->format("F") != $tempMonth) {
+		echo '<li><div class="tldate">' . $post->getCreatedTime()->format("F Y") . '</div></li>';
+		$tempMonth = $postList[$key]->getCreatedTime()->format("F");
+	}
+
 	$post_pos = ((($key+$post_offset)%2)==1) ? 'class="timeline-inverted"' : '';
 	echo '<li ' . $post_pos . '>';
     $post->toHtml();

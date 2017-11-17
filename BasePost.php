@@ -171,7 +171,9 @@ class BasePost {
 	private function translateStory() {
 		switch ($this->type) {
 			case 'photo':
-				return "Mode am oberen Tor hat " . count($this->imageUrls) . " neue Fotos hinzugefügt";
+				$imgcount = count($this->imageUrls);
+				return ($imagecount == 1) ? "Mode am oberen Tor hat " . count($this->imageUrls) . " neues Fotos hinzugefügt" :
+						"Mode am oberen Tor hat " . count($this->imageUrls) . " neue Fotos hinzugefügt";
 				break;
 
 			case 'event':
