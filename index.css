@@ -1518,9 +1518,12 @@ ul.topnav li a {
         display: none;
     }
     
-    li
-    {
+    ul.topnav li {
         width: 50%;
+    }
+
+    ul.topnav li:first-child {
+        width: 80%;
     }
 
     .abouttext 

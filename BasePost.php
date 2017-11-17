@@ -78,15 +78,15 @@ class BasePost {
     	echo '</div>';
 	}
 
-	private function imgToHtml() {
+	public function imgToHtml() {
 		$orientation = $this->imageUrls[0]->getOrientation();
 		echo '<button class="btn btn-default"type="button" data-toggle="collapse" data-target="#' . $this->getPostId() . '" aria-expanded="true" aria-controls="' . $this->getPostId() . '">';
 		echo '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>Expand';
 		echo '</button>';
 		if (count($this->imageUrls) == 1) {
-			echo '<div class="row collapse show" id="' . $this->getPostId() . '">';
+			echo '<div class="row collapse" id="' . $this->getPostId() . '">';
 			echo '<div class"col-12">';
-			echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
+			echo '<a href="' . $this->imageUrls[0]->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
 			echo '<img src="' . $this->imageUrls[0]->getImageUrl() . '">';
 			echo '</a>';
 			echo '</div>';
