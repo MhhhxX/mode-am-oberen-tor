@@ -111,21 +111,23 @@
 				var postoffset = parseInt($(this).attr("data-postoffset"));
 				postoffset += 3;
 				$(this).attr("data-postoffset", postoffset);
-				$.ajax({
-					type: "POST",
-					url: "newsfeed.php",
-					cache: false,
-					data: { 'post_offset': postoffset, 'last_month': $(".timeline li:last-child .text-muted").html().split(".")[1] },
-					success: function(data){
-						$(".timeline").append(data);
-						setTimeout(function(){
-							$(".timeline").heightfix();
-							triggerPos1 = $('.about').offset().top - 60;
-						}, 1000);
-					},
-					error: function(data) {
-						alert(data.toSource());
-					},
+				Pace.track(function(){
+					$.ajax({
+						type: "POST",
+						url: "newsfeed.php",
+						cache: false,
+						data: { 'post_offset': postoffset, 'last_month': $(".timeline li:last-child .text-muted").html().split(".")[1] },
+						success: function(data){
+							$(".timeline").append(data);
+							setTimeout(function(){
+								$(".timeline").heightfix();
+								triggerPos1 = $('.about').offset().top - 60;
+							}, 500);
+						},
+						error: function(data) {
+							alert(data.toSource());
+						},
+					});
 				});
 			});
 
@@ -923,32 +925,6 @@
       			'alwaysShowNavOnTouchDevices': true
     		})
 		</script>
-
-		<!--<script>
-			$("#post-picture1").justifiedGallery()({
-				rowHeight : 139,
-				margins : 3,
-			});
-		</script>-->
-
-		<!--<script>
-			$('.photoset-grid-custom').photosetGrid({
-			  // Set the gutter between columns and rows
-			  gutter: '5px',
-			  // Manually set the grid layout
-			  layout: '13',
-			  // Wrap the images in links
-			  highresLinks: false,
-			  // Asign a common rel attribute
-			  rel: 'print-gallery',
-
-			  onInit: function(){},
-			  onComplete: function(){
-			    // Show the grid after it renders
-			    $('.photoset-grid-custom').attr('style', '');
-			  }
-			});
-		</script>-->
         
 	</body>
 </html>
