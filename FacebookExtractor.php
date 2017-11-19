@@ -3,6 +3,8 @@ require_once 'FbImage.php';
 require_once "FacebookHelp.php";
 require_once "EventPost.php";
 require_once "BasePost.php";
+require_once "exceptions/orientationexception.php";
+require_once "exceptions/imageurlexception.php";
 
 class FacebookExtractor {
 	private $fbHelp;
@@ -38,12 +40,20 @@ class FacebookExtractor {
 				foreach ($submedia as $key1 => $mediaelem) {
 					$pictureLink = self::getPictureLink($mediaelem);
 					$orientation = self::calcOrientation($pictureLink);
-					$imageArray[] = new FbImage($pictureLink, $orientation);
+					try {
+						$imageArray[] = new FbImage($pictureLink, $orientation);
+					} catch (OrientationException | ImageUrlException $e) {
+						continue;
+					}
 				}
 			} else {
 				$pictureLink = self::getPictureLink($media[0]);
 				$orientation = self::calcOrientation($pictureLink);
-				$imageArray[] = new FbImage($pictureLink, $orientation);
+				try{
+					$imageArray[] = new FbImage($pictureLink, $orientation);
+				} catch (OrientationException | ImageUrlException $e) {
+					continue;
+				}
 			}
 			if ($type == 'event') {
 				$eventId = self::calcEventId($post->getField('id'));
