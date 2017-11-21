@@ -119,10 +119,8 @@
 						data: { 'post_offset': postoffset, 'last_month': $(".timeline li:last-child .text-muted").html().split(".")[1] },
 						success: function(data){
 							$(".timeline").append(data);
-							setTimeout(function(){
-								$(".timeline").heightfix();
-								triggerPos1 = $('.about').offset().top - 60;
-							}, 500);
+							$(".timeline").heightfix();
+							triggerPos1 = $('.about').offset().top - 60;
 						},
 						error: function(data) {
 							alert(data.toSource());
@@ -919,7 +917,7 @@
 		</main>
 	</div>
 
-		<script src="ExtSrc/lightbox/src/js/lightbox.js"></script>
+		<script src="ExtSrc/bower_components/lightbox2/src/js/lightbox.js"></script>
 		<script>
     		lightbox.option({
       			'alwaysShowNavOnTouchDevices': true
