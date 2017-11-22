@@ -29,6 +29,7 @@
 		<script src="ExtSrc/jquery.fadethis.js"></script>
 		<script src="ExtSrc/jquery.reject.min.js"></script>
 		<script src="ExtSrc/pace-1.0.2/pace.min.js"></script>
+		<script src="ExtSrc/bower_components/imagesloaded/imagesloaded.pkgd.min.js" type="text/javascript"></script>
 		<script src="js/handle.scrollspy.js"></script>
 		<script src="js/heightfix.js" type="text/javascript"></script>
 
