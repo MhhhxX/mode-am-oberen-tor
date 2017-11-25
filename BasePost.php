@@ -91,7 +91,7 @@ class BasePost {
 			echo '<div class="row collapse" id="' . $this->getPostId() . '">';
 			echo '<div class"col-12">';
 			echo '<a href="' . $this->imageUrls[0]->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
-			echo '<img src="' . $this->imageUrls[0]->getImageUrl() . '">';
+			echo '<img src="' . $this->imageUrls[0]->getImageUrl() . '" alt="Facebook Image">';
 			echo '</a>';
 			echo '</div>';
 			echo '</div>';

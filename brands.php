@@ -37,7 +37,7 @@ function generatePhotoGrid($path) {
 			foreach ($rowImgUrls as $key => $img) {
 				$columnSize = 12 / $urlSize;
 				echo '<div class="col-' . $columnSize . '">';
-				echo '<img class="img-responsive" src="' . $img . '">';
+				echo '<img class="img-responsive" src="' . $img . '" alt="' . $brandName . ' Logo">';
 				echo '</div>';
 			}
 		echo '</div>';

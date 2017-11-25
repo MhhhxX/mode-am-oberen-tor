@@ -445,8 +445,8 @@
 				<article class="jeansarticle">
 					
 					<figure class="left-pictures">
-						<img src="img/Jeans/jeans1.1.png" alt="">
-						<img src="img/Jeans/jeans2.1.png" alt="">
+						<img src="img/Jeans/jeans1.1.png" alt="Jeansmode">
+						<img src="img/Jeans/jeans2.1.png" alt="Jeansmode">
 					</figure>
 
 					<p class="slide-left text jeanstext">
@@ -459,8 +459,8 @@
 					</p>
 
 					<figure class="right-pictures">
-						<img src="img/Jeans/jeans3.1.png" alt="">
-						<img src="img/Jeans/jeans4.1.png" alt="">
+						<img src="img/Jeans/jeans3.1.png" alt="Jeansmode">
+						<img src="img/Jeans/jeans4.1.png" alt="Jeansmode">
 					</figure>
 
 					<div style="clear: both"></div>
@@ -481,13 +481,13 @@
 					</p>
 
 					<figure class="frauen-pictures float_right">
-						<img src="img/Frauen/frauen1.1.png" alt="">
-						<img src="img/Frauen/frauen2.1.png" alt="">
+						<img src="img/Frauen/frauen1.1.png" alt="Frauenmode">
+						<img src="img/Frauen/frauen2.1.png" alt="Frauenmode">
 						
 					</figure>
 					<figure class="frauen-pictures">
-						<img src="img/Frauen/frauen3.1.png" alt="">
-						<img src="img/Frauen/frauen4.1.png" alt="">
+						<img src="img/Frauen/frauen3.1.png" alt="Frauenmode">
+						<img src="img/Frauen/frauen4.1.png" alt="Frauenmode">
 					</figure>
 				</article>
 				
@@ -498,13 +498,13 @@
 				<article class="frauenmodearticle">
 
 					<figure class="frauen-pictures">
-						<img src="img/Maenner/maenner1.1.png" alt="">
-						<img src="img/Maenner/maenner2.1.png" alt="">
+						<img src="img/Maenner/maenner1.1.png" alt="Männermode">
+						<img src="img/Maenner/maenner2.1.png" alt="Männermode">
 					</figure>
 
 					<figure class="frauen-pictures float-left">
-						<img src="img/Maenner/maenner3.png" alt="">
-						<img src="img/Maenner/maenner5.1.png" alt="">
+						<img src="img/Maenner/maenner3.png" alt="Männermode">
+						<img src="img/Maenner/maenner5.1.png" alt="Männermode">
 					</figure>
 
 					
