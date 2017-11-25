@@ -49,7 +49,7 @@ function generateInfoBox($path, $brandName) {
 	echo '<div class="info">';
 	echo '<div class="card text-center">';
 	echo '<h3 class="card-header">' . $brandName . '</h3>';
-	echo '<div class="card-block>';
+	echo '<div class="card-block">';
 	echo '<p class="card-text">';
 	echo file_get_contents($path . "/text.txt");
 	echo '</p>';

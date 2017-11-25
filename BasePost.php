@@ -84,7 +84,7 @@ class BasePost {
 
 	public function imgToHtml() {
 		$orientation = $this->imageUrls[0]->getOrientation();
-		echo '<button class="btn btn-default"type="button" data-toggle="collapse" data-target="#' . $this->getPostId() . '" aria-expanded="true" aria-controls="' . $this->getPostId() . '">';
+		echo '<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#' . $this->getPostId() . '" aria-expanded="true" aria-controls="' . $this->getPostId() . '">';
 		echo '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>Expand';
 		echo '</button>';
 		if (count($this->imageUrls) == 1) {
