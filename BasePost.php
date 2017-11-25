@@ -69,8 +69,8 @@ class BasePost {
     	echo '<div class="timeline-panel">';
     	echo '<div class="tl-heading">';
     	echo '<h4>' . $this->translateStory() . '</h4>';
-    	echo '<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> ' . 
-    	strftime("%e.%B", $this->getCreatedTime()->getTimestamp()) . '</small></p>';
+    	echo '<p><small class="text-muted"><i class="material-icons" style="font-size: 14px;vertical-align: middle;">
+    		  schedule</i> ' . strftime("%e.%B", $this->getCreatedTime()->getTimestamp()) . '</small></p>';
     	echo '</div>';
     	if (count($this->imageUrls) > 1)
     		echo '<div class="tl-body" data-height="heightfix">';
@@ -99,7 +99,7 @@ class BasePost {
 		}
 		if ($orientation == 'l') {
 			echo '<div class="landscape collapse show" id="' . $this->getPostId() . '">';
-			echo '<div class="row">';
+			echo '<div class="row news-row-padding">';
 		} else
 			echo '<div class="row collapse show" id="' . $this->getPostId() . '">';
 
@@ -149,7 +149,7 @@ class BasePost {
 					break;
 
 				case 'l':
-					echo '<div class="col-4 hidden no-padding">';
+					echo '<div class="col-4 hidden">';
 					echo '<a href="' . $img->getImageUrl() . '" data-lightbox="' . $this->getPostId() . '">';
 					if ($currOrientation == 'p')
 						echo '<img style="margin-top:-50%;" src="' . $img->getImageUrl() . '">';
