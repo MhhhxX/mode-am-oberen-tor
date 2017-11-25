@@ -13,7 +13,7 @@
                 var imgCount = imgs.length;
                 for (var j = 1; j <= imgCount; j++) {
                     if (orientation == 'p') {
-                        $(imgs[j]).parent().parent().height(imgHeight/(imgCount-1)-3);
+                        $(imgs[j]).parent().parent().height(imgHeight/(imgCount-1)-imgCount-1);
                     } else {
                         $(imgs[j]).parent().parent().height(imgHeight/2);
                     }
