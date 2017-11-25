@@ -25,8 +25,8 @@
 
         <!--<script src="https://code.jquery.com/jquery-latest.js"></script>-->
 		<script src="js/jquery.mobile.custom.min.js"></script>
-		<script src="js/jquery.scrollTo.min.js"></script>
-		<script src="js/jquery.localScroll.min.js"></script>
+		<script src="ExtSrc/bower_components/jquery.scrollTo/jquery.scrollTo.min.js"></script>
+		<script src="ExtSrc/bower_components/jquery.localScroll/jquery.localScroll.min.js"></script>
 		<script src="ExtSrc/jquery.fadethis.js"></script>
 		<script src="ExtSrc/jquery.reject.min.js"></script>
 		<script src="ExtSrc/pace-1.0.2/pace.min.js"></script>
@@ -72,12 +72,9 @@
 		<script type="text/javascript">
 			$(window).load(function()
 			{
-				/*$(".bottomheader").load(function() $("section h1").height()/3
-				{*/
-					var abstand = $("section h1").height() - $(".bottomheader").height() - $(".bottomheader").height()/2;
-					if ($(".topnav").css("display") != "none")
-						abstand = -$(".topnav li").height() + 20;
-				//});
+				var abstand = $("section h1").height() - $(".bottomheader").height() - $(".bottomheader").height()/2;
+				if ($(".topnav").css("display") != "none")
+					abstand = -$(".topnav li").height() + 20;
 
 				jQuery(function( $ )
 					{
@@ -87,7 +84,7 @@
 						 * NOTE: I use $.localScroll instead of $('#navigation').localScroll() so I
 						 * also affect the >> and << links. I want every link in the page to scroll.
 						 */
-						$.localScroll(
+						$("header, #myTopnav").localScroll(
 						{
 							queue:true,
 							axis:'y',
@@ -264,12 +261,6 @@
 						</li>
 						
 				</ul>
-				
-				<!-- altes Logo
-					<a href="#" id="home">
-						<img id="logo" src="img/home_logo.JPG" alt="logo">
-					</a>
-				-->
 
 				<table id="mainlogo">
         				<tbody>
