@@ -9,7 +9,7 @@ foreach ($brand_dirs as $key => $dir) {
 	$brandName = $dir;
 	if (is_dir($pathToBrand) && ($dir != ".." && $dir != ".")) {
 		if (($pathToImg = glob($pathToBrand . "/logo.*"))) {
-			generateLogoHtml($pathToImg[0]);
+			generateLogoHtml($pathToImg[0], $pathToBrand, $brandName, $key);
 			generatePhotoGrid($pathToBrand);
 			generateInfoBox($pathToBrand, $brandName);
 		}
@@ -18,12 +18,11 @@ foreach ($brand_dirs as $key => $dir) {
 
 echo '</ul>';
 
-function generateLogoHtml($logoUrl) {
+function generateLogoHtml($logoUrl, $pathToBrand, $brandName, $key) {
 	echo '<li class="list-item">';
 	echo '<div class="card mb-3">';
 	echo '<img src="' . $logoUrl . '" class="card-img-top">';
-	echo '<div class="card-img-overlay d-none bg-light p-0" style="opacity:0.6;">';
-	echo '</div>';
+	generateXsInfoBox($pathToBrand, $brandName, $key);
 	echo '</div>';
 	echo '</li>';
 }
@@ -42,7 +41,6 @@ function generatePhotoGrid($path) {
 				echo '</div>';
 			}
 		echo '</div>';
-
 	}
 	echo '</div>';
 }
@@ -56,6 +54,19 @@ function generateInfoBox($path, $brandName) {
 	echo file_get_contents($path . "/text.txt");
 	echo '</p>';
 	echo '</div>';
+	echo '</div>';
+	echo '</div>';
+}
+
+function generateXsInfoBox($path, $brandName, $key) {
+	echo '<div class="card-text d-sm-none"><a href="#accordion' . $key . '" data-toggle="collapse"
+		  aria-expanded="false" aria-controls="accordion' . $key . '"><i class="material-icons">expand_more</i></a></div>';
+	echo '<div id="accordion' . $key . '" class="collapse d-sm-none" role="tabpanel">';
+	echo '<h3 class="card-header">' . $brandName . '</h3>';
+	echo '<div class="card-block">';
+	echo '<p class="card-text">';
+	echo file_get_contents($path . "/text.txt");
+	echo '</p>';
 	echo '</div>';
 	echo '</div>';
 }

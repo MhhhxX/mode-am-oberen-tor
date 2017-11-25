@@ -1127,6 +1127,12 @@ ul.topnav li a {
   }
 }
 
+@media screen and (max-width: 578px) {
+    .brands li {
+        width: 90%;
+    }
+}
+
 @media screen and (max-width:680px) {
   ul.topnav.responsive {position: fixed;}
   ul.topnav.responsive li.icon {

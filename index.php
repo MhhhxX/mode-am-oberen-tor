@@ -15,6 +15,7 @@
 		<link rel="stylesheet" media="all" type="text/css" href="fonts.css">
 		<link rel="stylesheet" media="all" type="text/css" href="index.css">
 		<link href="ExtSrc/lightbox/src/css/lightbox.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="shortcut icon" href="img/logos/Mode_am_oberen_Tor_Logo_quadratisch.ico" />
 
         <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
