@@ -316,7 +316,6 @@ nav
     }
 
 ul, ol {
-    margin: 0 0 1em 30px;
     line-height: 20px;
     }
 
@@ -632,6 +631,19 @@ footer img
     background-attachment: fixed;
 }
 
+.brands .pictures .row:nth-child(even) {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.brands .pictures .row .col-6:first-child {
+    padding-right: 0.15rem;
+}
+
+.brands .pictures .row .col-6:last-child {
+    padding-left: 0.15rem;
+}
+
 #brandlogos
 {
     margin-top: 40px;
@@ -697,7 +709,7 @@ footer img
 .brands .pictures
 {
     position: fixed;
-    top: 70px;
+    top: 50px;
     left: 35%;
     width: 30%;
     opacity: 0;
@@ -705,34 +717,13 @@ footer img
     -webkit-transition: opacity 1s ease, left 1s cubic-bezier(.68,-0.55,.27,1.55);
     -o-transition: opacity 1s ease, left 1s cubic-bezier(.68,-0.55,.27,1.55);
     transition: opacity 1s ease, left 1s cubic-bezier(.68,-0.55,.27,1.55);
-
+    z-index: 1;
     border: 5px solid black;
     border-radius: 10px;
 }
 
-.brands .pictures_big
-{
-    width: 100%; 
-    margin: 0px;
-}
-
-.brands .pictures_small
-{
-    width: 48%; 
-    margin: 0px;
-    margin-top: 4%;
-}
-
-.brands .pictures_left
-{
-    margin-right: 2%; 
-    float: left
-}
-
-.brands .pictures_right
-{
-     margin-left: 2%; 
-     float: right
+.brands .list-group li {
+    z-index: 3;
 }
 
 .brands .picturesOnHover
@@ -754,7 +745,6 @@ footer img
     -o-transition: left 1s ease, opacity 1s cubic-bezier(.68,-0.55,.27,1.55);
     transition: left 1s ease, opacity 1s cubic-bezier(.68,-0.55,.27,1.55);
     background-color: rgba(243, 243, 243, 0.25);
-    padding: 5%;
     border-radius: 10%;
     box-shadow: 5px 3px 70px 60px rgba(0, 0, 0, 0.81);
 }
@@ -768,7 +758,7 @@ footer img
 .activeOnHover
 {
     opacity: 1;
-        left: 0px;
+    left: 2rem;
 }
 
 /* Oeffnungszeiten */
