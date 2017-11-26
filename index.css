@@ -6,17 +6,15 @@
     }
 
 body {
-    font-family: Noto;
-    font-size: 1em;
     overflow: hidden;
     height: 100%;
     transition: all 1s ease;
     }
 
-p
+/*p
 {
     font-weight: bold;
-}
+}*/
 
 header a {
     text-decoration: none;
@@ -120,11 +118,6 @@ header {
     transform: translatez(0px);
     overflow: hidden;
     transition: all 1s 0.5s ease;
-    /*-moz-transition: -moz-transform 2s ease;
-    -o-transition: -o-transform 2s ease;
-    -webkit-transition: -webkit-transform 2s ease;
-    transition: transform 2s ease;
-    transform-style: preserve-3d*/
     }
 
 .header {
@@ -136,7 +129,6 @@ header {
     -o-transform: translatey(0%);
     -webkit-transform: translatey(0%);
     transform: translatey(0%);
-    /*overflow: hidden;*/
     -moz-transition: -moz-transform 2s ease;
     -o-transition: -o-transform 2s ease;
     -webkit-transition: -webkit-transform 2s ease;
@@ -146,8 +138,6 @@ header {
     -moz-transform-style: preserve-3d;
     -ms-transform-style: none;
     transform-style: preserve-3d;
-
-    /*-ms-perspective-origin: 50% 50%;*/
 
     margin: 0px auto;
 
@@ -228,7 +218,7 @@ header {
     transform: rotatey(65deg) rotatex(86deg) translatez(14px) rotatez(-2deg) !important;
 }
 
-#mainlogo, #mainlogo1
+#mainlogo
 {
     position: relative;
     width: 30%;
@@ -239,6 +229,7 @@ header {
     margin-top: 0.5%;
     font-family: arial;
     text-align: center;
+    line-height: 1.5rem;
 }
 
 #mainlogo th, #mainlogo1 th
@@ -336,7 +327,6 @@ img {
 #navR li, #navL li
 {
     width: 33%;
-    /*! float: right; */
 }
 
 #navR li:last-child
@@ -375,7 +365,6 @@ img {
 
 #bottomnavL li, #bottomnavR li
 {
-    /*border: 1px dotted white;*/
     width: 33%;
     line-height: 20px;
 }
@@ -631,6 +620,10 @@ footer img
     background-attachment: fixed;
 }
 
+.brands a {
+    color: #DD3700;
+}
+
 .brands .pictures .row:nth-child(even) {
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
@@ -816,9 +809,6 @@ footer img
 
 .news
 {
-    /*#C3C58C*/
-    /*background-image: url("img/News/aktuelles.png");
-    background-size: 200%;*/
     background: #333;
     z-index: 2;
 }
@@ -867,13 +857,12 @@ footer img
     min-height: 750px;
     overflow: hidden;
     display: block;
+    z-index: 3;
 }
 
 .about #contact
 {
-    /*! float: left; */ 
     width: 50%;
-    /*! display: inline-block; */
 }
 
 .about #contact:after
@@ -909,7 +898,6 @@ footer img
 .about #map .route
 {
     font-size: 14px;
-    /*! margin-right: 30%; */
     float: right;
     text-align: right;
     width: 50%;
@@ -927,13 +915,9 @@ footer img
 {
     font-size: 14px;
     float: left;
-
-    /*!  */
     height: 100%;
     display: block;
     width: 50%;
-    /*! text-align: center; */
-    /*! margin-left: 1%; */
 }
 
 .about article
@@ -976,13 +960,6 @@ footer img
     font-size: 20px;
     color: #DD3700
 }
-
-/*.about p
-{
-    width: 50%;
-    margin: 50px auto 50px;
-    font-family: arial;
-}*/
 
 .about iframe
 {
@@ -1125,12 +1102,6 @@ ul.topnav li a {
   {
     padding: 10px 20px 10px 10px;
   }
-}
-
-@media screen and (max-width: 578px) {
-    .brands li {
-        width: 90%;
-    }
 }
 
 @media screen and (max-width:680px) {
@@ -1612,11 +1583,6 @@ ul.topnav li a {
     {
         width: 90%;
     }
-
-    .info
-    {
-    display: none;
-    }
     
     /* Neuigkeiten */
     .news .newsblock
@@ -1716,3 +1682,45 @@ ul.topnav li a {
     }
 }
 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+    .brands li {
+        width: 90%;
+    }
+}
+
+/*Small devices (landscape phones, less than 768px)*/
+@media (max-width: 767px) {}
+
+/*Medium devices (tablets, less than 992px)*/
+@media (max-width: 991px) {}
+
+/*Large devices (desktops, less than 1200px)*/
+@media (max-width: 1199px) {}
+
+/*Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575px) {}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767px) {}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {}

@@ -29,18 +29,13 @@
 		<script src="ExtSrc/bower_components/jquery.localScroll/jquery.localScroll.min.js"></script>
 		<script src="ExtSrc/jquery.fadethis.js"></script>
 		<script src="ExtSrc/jquery.reject.min.js"></script>
-		<script src="ExtSrc/pace-1.0.2/pace.min.js"></script>
 		<script src="ExtSrc/bower_components/imagesloaded/imagesloaded.pkgd.min.js" type="text/javascript"></script>
 		<script src="js/handle.scrollspy.js"></script>
 		<script src="js/heightfix.js" type="text/javascript"></script>
+		<script src="js/rotate-anim.js" type="text/javascript"></script>
+		<script src="ExtSrc/pace-1.0.2/pace.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="ExtSrc/pace-1.0.2/themes/red/pace-theme-center-circle.css">
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$(window).fadeThis();
-			});
-		</script>
 
 		<script>
 			Pace.on('done', function()
@@ -50,6 +45,37 @@
 				$("header").css("opacity", "1");
 				$(".mainbackground article").css("opacity", "1");
 				$(".topnav").css("opacity", "1");
+			});
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(window).fadeThis();
+			});
+		</script>
+
+		<script type="text/javascript">
+			$(window).load(function() {
+				var expandButtons = $(".brands .card-text").find("i").toArray();
+				$.each(expandButtons, function() {
+					var clickCounter = 0;
+					var isClicked = false;
+					$(this).on('click', function() {
+						if (!isClicked) {
+							isClicked = true;
+							clickCounter += 1;
+							var rest = clickCounter % 2;
+							var angle = (rest == 1) ? 180 : 0;
+							var startangle = (rest == 1) ? 0 : 180;
+							$(this).animateRotate(startangle, angle, {
+								duration: 300,
+								easing: 'linear',
+								complete: function () {isClicked = false;},
+								step: function () {}
+							});
+						}
+					});
+				});
 			});
 		</script>
 
@@ -119,7 +145,9 @@
 						success: function(data){
 							$(".timeline").append(data);
 							$(".timeline").heightfix();
-							triggerPos1 = $('.about').offset().top - 60;
+							$(".timeline").imagesLoaded(function() {
+								triggerPos1 = $('.about').offset().top - 60;
+							});
 						},
 						error: function(data) {
 							alert(data.toSource());
@@ -139,65 +167,65 @@
 			$(".jeansmode, .frauenmode, .maennermode, .about, .mainbackground").css("height", browserHeight);
 
 			var triggerPos = $(".jeansmode").offset().top - 60;		// gibt an ab welchem y-Wert die Animation gestartet werden soll (in Pixel)
-			triggerPos1 = $('.about').offset().top - 60;
+			$(".brands").imagesLoaded(function() {
+				triggerPos1 = $('.about').offset().top - 60;
+			
+				var isIE10 = !!navigator.userAgent.match(/MSIE 10/);
+				var isIE11 = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
 
-			var isIE10 = !!navigator.userAgent.match(/MSIE 10/);
-			var isIE11 = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
+				var distance = $(".bottomheader").height();
 
-			var distance = $(".bottomheader").height();
-
-			if (isIE10 || isIE11)
-			{
-
-				$(window).on('scroll', function ()
+				if (isIE10 || isIE11)
 				{
-					if ($(window).scrollTop() > triggerPos)
+
+					$(window).on('scroll', function ()
 					{
-						$(".frontheader").addClass("smaller-header");
-						$(".bottomheader").addClass("bottomheader-rotate");
-						$(".frontheaderMobile").addClass("smaller-header");
-						$("footer").css("display", "block");
+						if ($(window).scrollTop() > triggerPos)
+						{
+							$(".frontheader").addClass("smaller-header");
+							$(".bottomheader").addClass("bottomheader-rotate");
+							$(".frontheaderMobile").addClass("smaller-header");
+							$("footer").css("display", "block");
 
-					}
-					if ($(window).scrollTop() < triggerPos)
-					{
+						}
+						if ($(window).scrollTop() < triggerPos)
+						{
 
-						$(".bottomheader").removeClass("bottomheader-rotate");
-						$("footer").css("display", "none");
-						$(".frontheader").removeClass("smaller-header");
-						$(".frontheaderMobile").removeClass("smaller-header");
-					}
-				});
-			}
-			else
-			{
-
-				$(window).scroll(function ()
+							$(".bottomheader").removeClass("bottomheader-rotate");
+							$("footer").css("display", "none");
+							$(".frontheader").removeClass("smaller-header");
+							$(".frontheaderMobile").removeClass("smaller-header");
+						}
+					});
+				}
+				else
 				{
-					if ($(window).scrollTop() > triggerPos)
+
+					$(window).scroll(function()
 					{
-						$(".header").addClass("smaller-header");
-						$("footer").css("display", "block");
+						if ($(window).scrollTop() >= triggerPos)
+						{
+							$(".header").addClass("smaller-header");
+							$("footer").css("display", "block");
 
-					}
-					if ($(window).scrollTop() < triggerPos)
-					{
-						$("footer").css("display", "none");
-						$(".header").removeClass("smaller-header");
-					}
+						}
+						if ($(window).scrollTop() < triggerPos)
+						{
+							$("footer").css("display", "none");
+							$(".header").removeClass("smaller-header");
+						}
 
-					if ($(window).scrollTop() > triggerPos1)
-					{
+						if ($(window).scrollTop() >= triggerPos1)
+						{
+							$(".header").addClass("side-header");
+						}
+						else
+							$(".header").removeClass("side-header");
 
-						$(".header").addClass("side-header");
-					}
-					else
-						$(".header").removeClass("side-header");
 
-
-				});
-			}
-
+					});
+				}
+			});
 		});
 		</script>
 
@@ -389,20 +417,6 @@
 							</table>
   				    	</a>
   				    </li>
-  				    <!--<li class="icon">
-  				    	<a class="active" href="#home">
-	  				    	<table class="bottomlogo">
-								<tbody>
-									<tr>
-	            						<th> mode </th>
-	            						<th> am <br>
-	              							oberen </th>
-	            						<th> tor </th>
-	  								</tr>
-								</tbody>
-							</table>
-						</a>
-  				    </li>-->
 					<li><a href="#jeansmode">Hosen</a></li>
 					<li><a href="#damenmode">Frauen</a></li>
 					<li><a href="#maennermode">Männer</a></li>
