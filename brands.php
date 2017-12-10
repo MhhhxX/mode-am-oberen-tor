@@ -27,7 +27,7 @@ function generateLogoHtml($logoUrl, $pathToBrand, $brandName, $key) {
 	echo '</li>';
 }
 
-function generatePhotoGrid($path) {
+function generatePhotoGrid($path, $brandName) {
 	echo '<div class="pictures">';
 	for ($i=0; $i < 3; $i++) { 
 		$rowImgUrls = detectRowImages($i, $path);
@@ -37,7 +37,7 @@ function generatePhotoGrid($path) {
 			foreach ($rowImgUrls as $key => $img) {
 				$columnSize = 12 / $urlSize;
 				echo '<div class="col-' . $columnSize . '">';
-				echo '<img class="img-responsive" src="' . $img . '">';
+				echo '<img class="img-responsive" src="' . $img . '" alt="' . $brandName . '">';
 				echo '</div>';
 			}
 		echo '</div>';
