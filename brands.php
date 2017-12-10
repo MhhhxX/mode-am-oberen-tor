@@ -10,7 +10,7 @@ foreach ($brand_dirs as $key => $dir) {
 	if (is_dir($pathToBrand) && ($dir != ".." && $dir != ".")) {
 		if (($pathToImg = glob($pathToBrand . "/logo.*"))) {
 			generateLogoHtml($pathToImg[0], $pathToBrand, $brandName, $key);
-			generatePhotoGrid($pathToBrand);
+			generatePhotoGrid($pathToBrand, $brandName);
 			generateInfoBox($pathToBrand, $brandName);
 		}
 	}
@@ -37,7 +37,7 @@ function generatePhotoGrid($path) {
 			foreach ($rowImgUrls as $key => $img) {
 				$columnSize = 12 / $urlSize;
 				echo '<div class="col-' . $columnSize . '">';
-				echo '<img class="img-responsive" src="' . $img . '" alt="' . $brandName . ' Logo">';
+				echo '<img class="img-responsive" src="' . $img . '">';
 				echo '</div>';
 			}
 		echo '</div>';

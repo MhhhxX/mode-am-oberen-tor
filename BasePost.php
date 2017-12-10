@@ -69,8 +69,7 @@ class BasePost {
     	echo '<div class="timeline-panel">';
     	echo '<div class="tl-heading">';
     	echo '<h4>' . $this->translateStory() . '</h4>';
-    	echo '<p><small class="text-muted"><i class="material-icons" style="font-size: 14px;vertical-align: middle;">
-    		  schedule</i> ' . strftime("%e.%B", $this->getCreatedTime()->getTimestamp()) . '</small></p>';
+    	echo '<p><small class="text-muted"><i class="material-icons" style="font-size: 14px;vertical-align: middle;">schedule</i> ' . strftime("%e.%B", $this->getCreatedTime()->getTimestamp()) . '</small></p>';
     	echo '</div>';
     	if (count($this->imageUrls) > 1)
     		echo '<div class="tl-body" data-height="heightfix">';
@@ -172,7 +171,7 @@ class BasePost {
 		switch ($this->type) {
 			case 'photo':
 				$imgcount = count($this->imageUrls);
-				return ($imagecount == 1) ? "Mode am oberen Tor hat " . count($this->imageUrls) . " neues Fotos hinzugefügt" :
+				return ($imgcount == 1) ? "Mode am oberen Tor hat " . count($this->imageUrls) . " neues Fotos hinzugefügt" :
 						"Mode am oberen Tor hat " . count($this->imageUrls) . " neue Fotos hinzugefügt";
 				break;
 
