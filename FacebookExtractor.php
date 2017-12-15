@@ -31,29 +31,31 @@ class FacebookExtractor {
 			$createdTime = $post->getField('created_time');
 			$attachmentsNode;
 			$imageArray = array();
-			if(!($attachmentsNode = $this->fbHelp->requestGraphNode('/' . $postId . '?fields=attachments,type')))
-				echo "Fehler bitte Log lesen!";
-			$type = $attachmentsNode->getField('type');
-			$media = $attachmentsNode->getField('attachments');
-			// collect attached media files
-			if (($submedia = $media[0]->getField('subattachments')) == true) {	// post has multiple images
-				foreach ($submedia as $key1 => $mediaelem) {
-					$pictureLink = self::getPictureLink($mediaelem);
-					$orientation = self::calcOrientation($pictureLink);
-					try {
-						$imageArray[] = new FbImage($pictureLink, $orientation);
-					} catch (OrientationException | ImageUrlException $e) {
-						continue;
+			if (($attachmentsNode = $this->fbHelp->requestGraphNode('/' . $postId . '?fields=attachments,type'))) {
+				$type = $attachmentsNode->getField('type');
+				$media = $attachmentsNode->getField('attachments', $default_string = "empty");
+				
+				// collect attached media files
+				if ($media != "empty")
+					if (($submedia = $media[0]->getField('subattachments')) == true) {	// post has multiple images
+						foreach ($submedia as $key1 => $mediaelem) {
+							$pictureLink = self::getPictureLink($mediaelem);
+							$orientation = self::calcOrientation($pictureLink);
+							try {
+								$imageArray[] = new FbImage($pictureLink, $orientation);
+							} catch (OrientationException | ImageUrlException $e) {
+								continue;
+							}
+						}
+					} else {
+						$pictureLink = self::getPictureLink($media[0]);
+						$orientation = self::calcOrientation($pictureLink);
+						try{
+							$imageArray[] = new FbImage($pictureLink, $orientation);
+						} catch (OrientationException | ImageUrlException $e) {
+							continue;
+						}
 					}
-				}
-			} else {
-				$pictureLink = self::getPictureLink($media[0]);
-				$orientation = self::calcOrientation($pictureLink);
-				try{
-					$imageArray[] = new FbImage($pictureLink, $orientation);
-				} catch (OrientationException | ImageUrlException $e) {
-					continue;
-				}
 			}
 			if ($type == 'event') {
 				$eventId = self::calcEventId($post->getField('id'));

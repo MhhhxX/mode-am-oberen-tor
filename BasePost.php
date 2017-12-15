@@ -76,7 +76,8 @@ class BasePost {
     	else
     		echo '<div class="tl-body">';
     	echo '<p>' . $this->getMessage() . '</p>';
-    	$this->imgToHtml();
+    	if (count($this->imageUrls) > 0)
+    		$this->imgToHtml();
     	echo '</div>';
     	echo '</div>';
 	}
