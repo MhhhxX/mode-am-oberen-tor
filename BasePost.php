@@ -165,7 +165,6 @@ class BasePost {
 		}
 		echo '</div>';
 		echo '</div>';
-		if ($orientation == 'l') echo '</div>';
 	}
 
 	private function translateStory() {
