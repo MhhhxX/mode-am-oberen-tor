@@ -1,0 +1,7 @@
+{
+    "require": {
+        "facebook/graph-sdk": "^5.6",
+        "kenguest/services-openstreetmap": "^0.5.0"
+    },
+    "include-path": [ "vendor/pear/http_request2" ]
+}

@@ -1,5 +1,5 @@
 <?php
-	require_once __DIR__ . '/ExtSrc/Services_Openstreetmap-master/Services/OpenStreetMap.php';
+	require_once 'vendor/autoload.php';
 
 	
 			$osm = new Services_OpenStreetMap();
